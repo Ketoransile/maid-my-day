@@ -111,28 +111,34 @@ export function Testimonials() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.55, ease: easeOut }}
-            className="relative px-2 sm:px-0"
+          className="mt-12"
+        >
+          <Carousel
+            opts={{
+              align: "center",
+              loop: true,
+            }}
+            className="w-full"
           >
-            <Carousel
-              opts={{
-                align: "start",
-                loop: true,
-              }}
-              className="w-full"
-            >
-              <CarouselContent className="-ml-3 sm:-ml-4">
-                {testimonials.map((testimonial) => (
-                  <CarouselItem
-                    key={testimonial.name}
-                    className="pl-3 sm:pl-4 md:basis-1/2 lg:basis-1/3"
-                  >
-                    <TestimonialCard testimonial={testimonial} />
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-              <CarouselPrevious className="left-1 sm:left-2" />
-              <CarouselNext className="right-1 sm:right-2" />
-            </Carousel>
+            <div className="flex items-center gap-3 sm:gap-5 lg:gap-8">
+              <CarouselPrevious className="static left-auto top-auto shrink-0 translate-y-0" />
+
+              <div className="mx-auto min-w-0 max-w-4xl flex-1 px-1 sm:px-2 lg:max-w-3xl">
+                <CarouselContent className="-ml-3 sm:-ml-4">
+                  {testimonials.map((testimonial) => (
+                    <CarouselItem
+                      key={testimonial.name}
+                      className="pl-3 sm:pl-4 md:basis-[88%] lg:basis-[42%] xl:basis-[36%]"
+                    >
+                      <TestimonialCard testimonial={testimonial} />
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+              </div>
+
+              <CarouselNext className="static right-auto top-auto shrink-0 translate-y-0" />
+            </div>
+          </Carousel>
         </motion.div>
       </SiteContainer>
     </section>
