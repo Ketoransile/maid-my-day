@@ -220,6 +220,11 @@ nav button:hover .nav-underline {
   object-position: 60% center;
 }
 
+.hero-poster-layer {
+  transform: scale(1.04);
+  object-position: 60% center;
+}
+
 .hero-video-layer {
   transform: scale(1.04);
   object-position: 60% center;
