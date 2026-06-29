@@ -138,7 +138,7 @@ export function WhyUs() {
             <div className="image-frame relative h-[260px] overflow-hidden rounded-2xl sm:h-[360px] lg:h-[480px]">
               <FillImage
                 src={images.whyUs}
-                alt="Expat family enjoying trusted home support in Addis Ababa"
+                alt="Happy family enjoying their home in Addis Ababa"
                 className="transition-transform duration-700 ease-out hover:scale-105"
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />

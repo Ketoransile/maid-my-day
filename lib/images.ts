@@ -34,7 +34,7 @@ export const images = {
       "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=1800&q=85&auto=format&fit=crop",
   },
   whyUs:
-    "https://images.unsplash.com/photo-1511895426328-dc8714191300?w=900&q=80&auto=format&fit=crop",
+    "https://plus.unsplash.com/premium_photo-1661660247608-236c8bafd3cb?w=900&q=80&auto=format&fit=crop",
   mission: {
     main: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=900&q=80",
     detail:
