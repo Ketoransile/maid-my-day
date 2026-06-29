@@ -13,8 +13,8 @@ type RevealProps = {
   delay?: number;
   as?: TextTag;
   animateOnMount?: boolean;
-  /** Remount and replay when locale or content identity changes */
-  replayKey?: string;
+  /** Swap translated copy instantly without entrance animation */
+  instant?: boolean;
 } & Omit<HTMLMotionProps<"div">, "children">;
 
 export function Reveal({
@@ -23,25 +23,27 @@ export function Reveal({
   delay = 0,
   as = "div",
   animateOnMount = false,
-  replayKey,
+  instant = false,
   ...props
 }: RevealProps) {
   const reduceMotion = useReducedMotion();
-  const Component = motion[as] as typeof motion.div;
+  const Tag = as;
 
-  if (reduceMotion) {
-    const Tag = as;
+  if (reduceMotion || instant) {
     return <Tag className={className}>{children}</Tag>;
   }
 
-  const shouldAnimateOnMount = animateOnMount || Boolean(replayKey);
-  const motionProps = shouldAnimateOnMount
-    ? { initial: "hidden", animate: "visible" }
-    : { initial: "hidden", whileInView: "visible", viewport: viewportOnce };
+  const Component = motion[as] as typeof motion.div;
+  const motionProps = animateOnMount
+    ? { initial: "hidden" as const, animate: "visible" as const }
+    : {
+        initial: "hidden" as const,
+        whileInView: "visible" as const,
+        viewport: viewportOnce,
+      };
 
   return (
     <Component
-      key={replayKey}
       className={className}
       variants={blurReveal}
       transition={{ delay, duration: 0.65, ease: easeOut }}
@@ -59,7 +61,7 @@ type RevealWordsProps = {
   delay?: number;
   as?: TextTag;
   animateOnMount?: boolean;
-  replayKey?: string;
+  instant?: boolean;
 };
 
 export function RevealWords({
@@ -68,25 +70,27 @@ export function RevealWords({
   delay = 0,
   as = "h2",
   animateOnMount = false,
-  replayKey,
+  instant = false,
 }: RevealWordsProps) {
   const reduceMotion = useReducedMotion();
-  const words = text.split(" ");
-  const Component = motion[as] as typeof motion.h2;
+  const Tag = as;
 
-  if (reduceMotion) {
-    const Tag = as;
+  if (reduceMotion || instant) {
     return <Tag className={className}>{text}</Tag>;
   }
 
-  const shouldAnimateOnMount = animateOnMount || Boolean(replayKey);
-  const motionProps = shouldAnimateOnMount
-    ? { initial: "hidden", animate: "visible" }
-    : { initial: "hidden", whileInView: "visible", viewport: viewportOnce };
+  const words = text.split(" ");
+  const Component = motion[as] as typeof motion.h2;
+  const motionProps = animateOnMount
+    ? { initial: "hidden" as const, animate: "visible" as const }
+    : {
+        initial: "hidden" as const,
+        whileInView: "visible" as const,
+        viewport: viewportOnce,
+      };
 
   return (
     <Component
-      key={replayKey ?? text}
       className={cn(className, "flex flex-wrap gap-x-[0.3em]")}
       custom={delay}
       variants={wordStaggerContainer}

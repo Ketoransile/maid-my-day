@@ -55,7 +55,7 @@ function StatItem({
 }
 
 export function WhyUs() {
-  const { locale, t } = useLanguage();
+  const { t } = useLanguage();
   const families = useCountUp(500, 1500, "+");
   const rating = useCountUp(5, 1200);
   const years = useCountUp(3, 1200, "+");
@@ -79,10 +79,10 @@ export function WhyUs() {
             />
 
             <motion.ul
-              key={locale}
               variants={listContainer}
               initial="hidden"
-              animate="visible"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-80px" }}
               className={cn("space-y-3", sectionHeaderGap)}
             >
               {t.whyUs.trustPoints.map((point, index) => (
@@ -99,8 +99,8 @@ export function WhyUs() {
                     />
                   </span>
                   <div>
-                    <p className="font-medium text-ink">{point.title}</p>
-                    <p className="mt-1.5 text-sm leading-relaxed text-ink/65">
+                    <p className="font-semibold text-ink">{point.title}</p>
+                    <p className="mt-1.5 text-sm font-medium leading-relaxed text-ink/75">
                       {point.detail}
                     </p>
                   </div>

@@ -20,7 +20,7 @@ import { sectionHeaderGap, sectionPaddingY } from "@/lib/section-spacing";
 import { cn } from "@/lib/utils";
 
 export function HomeIntroSection() {
-  const { locale, t } = useLanguage();
+  const { t } = useLanguage();
   const intro = t.homePage.intro;
 
   return (
@@ -35,7 +35,7 @@ export function HomeIntroSection() {
       />
       <SiteContainer className={sectionContentClass}>
         <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-start lg:gap-14">
-          <div key={locale}>
+          <div>
             <SectionHeader
               eyebrow={intro.eyebrow}
               title={intro.title}
@@ -57,7 +57,7 @@ export function HomeIntroSection() {
           <div className="grid grid-cols-2 gap-3 sm:gap-4">
             {t.homePage.quickFacts.map((fact, index) => (
               <motion.div
-                key={`${locale}-${index}`}
+                key={index}
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: index * 0.06, ease: easeOut }}
@@ -77,7 +77,7 @@ export function HomeIntroSection() {
 }
 
 export function HomePackagesSection() {
-  const { locale, t } = useLanguage();
+  const { t } = useLanguage();
   const pkgs = t.homePage;
 
   return (
@@ -92,7 +92,7 @@ export function HomePackagesSection() {
       <div className="grid gap-5 md:grid-cols-3">
         {pkgs.relocationPackages.map((pkg, index) => (
           <article
-            key={`${locale}-${index}`}
+            key={index}
             className="section-surface flex flex-col rounded-2xl p-6"
           >
             <h3 className="text-base font-semibold text-ink">{pkg.title}</h3>
@@ -124,7 +124,7 @@ export function HomePackagesSection() {
 }
 
 export function HomeExpectationsSection() {
-  const { locale, t } = useLanguage();
+  const { t } = useLanguage();
 
   return (
     <section
@@ -140,7 +140,7 @@ export function HomeExpectationsSection() {
         <div className={cn("grid gap-4 sm:grid-cols-2 lg:grid-cols-4", sectionHeaderGap)}>
           {t.homePage.expectationsItems.map((item, index) => (
             <motion.article
-              key={`${locale}-${index}`}
+              key={index}
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.45, delay: index * 0.07, ease: easeOut }}
@@ -159,7 +159,7 @@ export function HomeExpectationsSection() {
 }
 
 export function HomeNeighborhoodsSection() {
-  const { locale, t } = useLanguage();
+  const { t } = useLanguage();
 
   return (
     <ContentSection
@@ -173,7 +173,7 @@ export function HomeNeighborhoodsSection() {
       <div className="grid gap-4 sm:grid-cols-2">
         {t.homePage.neighborhoodItems.map((area, index) => (
           <article
-            key={`${locale}-${index}`}
+            key={index}
             className="section-surface rounded-2xl p-6"
           >
             <h3 className="text-base font-semibold text-primary">{area.name}</h3>

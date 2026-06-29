@@ -23,7 +23,7 @@ const list = {
 };
 
 export function FAQ() {
-  const { locale, t } = useLanguage();
+  const { t } = useLanguage();
 
   return (
     <section id="faq" className={`${sectionShellClass} py-16 sm:py-24 lg:py-32`}>
@@ -41,10 +41,10 @@ export function FAQ() {
         />
 
         <motion.div
-          key={locale}
           variants={list}
           initial="hidden"
-          animate="visible"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-60px" }}
         >
           <Accordion type="single" collapsible className={cn(sectionHeaderGap, "flex flex-col gap-4")}>
             {t.faq.items.map((faq, index) => (
@@ -54,7 +54,7 @@ export function FAQ() {
                 className="faq-item overflow-hidden rounded-2xl"
               >
                 <AccordionItem value={`item-${index}`} className="border-0 bg-transparent">
-                  <AccordionTrigger className="gap-4 px-5 py-5 text-left text-[15px] font-medium leading-snug text-ink hover:no-underline data-[state=open]:text-primary">
+                  <AccordionTrigger className="gap-4 px-5 py-5 text-left text-[15px] font-semibold leading-snug text-ink hover:no-underline data-[state=open]:text-primary">
                     {faq.question}
                   </AccordionTrigger>
                   <AccordionContent className="faq-answer mx-5 pb-5 pt-4 text-[0.9375rem] leading-relaxed text-ink/65">

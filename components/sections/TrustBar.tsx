@@ -22,7 +22,7 @@ const container = {
 };
 
 export function TrustBar() {
-  const { locale, t } = useLanguage();
+  const { t } = useLanguage();
 
   return (
     <section id="trust-bar" className={`${sectionShellClass} py-5 sm:py-6`}>
@@ -34,10 +34,10 @@ export function TrustBar() {
       />
       <SiteContainer className={sectionContentClass}>
         <motion.div
-          key={locale}
           variants={container}
           initial="hidden"
-          animate="visible"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-40px" }}
           className="section-surface flex flex-wrap items-center justify-center gap-3 rounded-2xl px-4 py-3.5 sm:gap-0 sm:px-6 sm:py-4"
         >
           {t.trustBar.items.map((trustItem, index) => {
@@ -48,7 +48,7 @@ export function TrustBar() {
                   <span className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10">
                     <Icon size={15} className="text-primary" strokeWidth={1.75} />
                   </span>
-                  <span className="text-[13px] font-medium text-ink/80 sm:text-sm">
+                  <span className="text-[13px] font-semibold text-ink/85 sm:text-sm">
                     {trustItem.label}
                   </span>
                 </div>

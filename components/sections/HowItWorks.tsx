@@ -8,6 +8,7 @@ import { SectionBackground, sectionContentClass, sectionShellClass } from "@/com
 import { SectionHeader } from "@/components/section-header";
 import { Reveal, RevealWords } from "@/components/motion/reveal-text";
 import { useLanguage } from "@/components/providers/language-provider";
+import { useLocaleChanged } from "@/hooks/use-locale-changed";
 import { images } from "@/lib/images";
 import { easeOut, staggerItem } from "@/lib/motion";
 import { sectionHeaderGap } from "@/lib/section-spacing";
@@ -28,7 +29,8 @@ type HowItWorksProps = {
 };
 
 export function HowItWorks({ variant = "hero" }: HowItWorksProps) {
-  const { locale, t } = useLanguage();
+  const { t } = useLanguage();
+  const localeChanged = useLocaleChanged();
   const isPage = variant === "page";
   const steps = t.howItWorks.steps;
 
@@ -49,12 +51,12 @@ export function HowItWorks({ variant = "hero" }: HowItWorksProps) {
           />
         ) : (
           <div className="max-w-xl">
-            <Reveal as="p" replayKey={locale} className="text-xs font-medium uppercase tracking-[0.1em] text-white/60" delay={0.05}>
+            <Reveal as="p" instant={localeChanged} className="text-xs font-semibold uppercase tracking-[0.1em] text-white/70" delay={0.05}>
               {t.howItWorks.eyebrow}
             </Reveal>
             <RevealWords
               as="h2"
-              replayKey={locale}
+              instant={localeChanged}
               className="mt-3 text-[1.625rem] font-semibold text-white sm:text-[2rem] lg:text-[2.25rem]"
               text={t.howItWorks.title}
               delay={0.12}
@@ -63,10 +65,10 @@ export function HowItWorks({ variant = "hero" }: HowItWorksProps) {
         )}
 
         <motion.div
-          key={locale}
           variants={container}
           initial="hidden"
-          animate="visible"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-80px" }}
           className={cn("grid gap-8 md:grid-cols-3", sectionHeaderGap)}
         >
           {steps.map((step) => (

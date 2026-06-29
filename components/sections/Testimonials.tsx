@@ -73,7 +73,7 @@ function TestimonialCard({
 }
 
 export function Testimonials() {
-  const { locale, t } = useLanguage();
+  const { t } = useLanguage();
 
   return (
     <section id="testimonials" className={`${sectionShellClass} py-16 sm:py-24 lg:py-32`}>
@@ -90,12 +90,7 @@ export function Testimonials() {
           description={t.testimonials.description}
         />
 
-        <motion.div
-          key={locale}
-          initial={{ opacity: 1, y: 0 }}
-          animate={{ opacity: 1, y: 0 }}
-          className={sectionHeaderGap}
-        >
+        <div className={sectionHeaderGap}>
           <Carousel
             opts={{
               align: "start",
@@ -127,7 +122,7 @@ export function Testimonials() {
               <CarouselNext className="static right-auto top-auto h-10 w-10 shrink-0 translate-y-0" />
             </div>
           </Carousel>
-        </motion.div>
+        </div>
       </SiteContainer>
     </section>
   );

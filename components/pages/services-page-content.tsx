@@ -14,7 +14,7 @@ import { sectionHeaderGap, sectionPaddingY } from "@/lib/section-spacing";
 import { cn } from "@/lib/utils";
 
 export function ServicesPageContent() {
-  const { locale, t } = useLanguage();
+  const { t } = useLanguage();
   const sp = t.servicesPage;
 
   return (
@@ -33,7 +33,7 @@ export function ServicesPageContent() {
               )}
             >
               <motion.div
-                key={`${locale}-${service.id}-text`}
+                key={`${service.id}-text`}
                 initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.55, ease: easeOut }}
@@ -89,7 +89,7 @@ export function ServicesPageContent() {
               </motion.div>
 
               <motion.div
-                key={`${locale}-${service.id}-image`}
+                key={`${service.id}-image`}
                 initial={{ opacity: 0, scale: 0.97 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.55, ease: easeOut }}
@@ -116,10 +116,10 @@ export function ServicesPageContent() {
         overlay="light"
       >
         <motion.div
-          key={locale}
           variants={staggerContainer}
           initial="hidden"
-          animate="visible"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-40px" }}
           className="flex flex-wrap justify-center gap-2.5"
         >
           {sp.serviceAreas.map((area) => (
@@ -146,7 +146,7 @@ export function ServicesPageContent() {
         <div className="grid gap-5 md:grid-cols-3">
           {t.homePage.relocationPackages.map((pkg, index) => (
             <article
-              key={`${locale}-${index}`}
+              key={index}
               className="section-surface flex flex-col rounded-2xl p-6"
             >
               <h3 className="text-base font-semibold text-ink">{pkg.title}</h3>
@@ -182,7 +182,7 @@ export function ServicesPageContent() {
           <div className={cn("grid gap-5 md:grid-cols-3", sectionHeaderGap)}>
             {sp.whyItMattersItems.map((item, index) => (
               <article
-                key={`${locale}-${index}`}
+                key={index}
                 className="section-surface rounded-2xl p-6"
               >
                 <h3 className="text-base font-semibold text-ink">{item.title}</h3>

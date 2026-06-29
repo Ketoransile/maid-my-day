@@ -51,6 +51,10 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
 
     window.localStorage.setItem(STORAGE_KEY, locale);
     document.documentElement.lang = locale === "en" ? "en" : locale;
+    document.documentElement.classList.remove("locale-am", "locale-om", "locale-so");
+    if (locale !== "en") {
+      document.documentElement.classList.add(`locale-${locale}`);
+    }
   }, [locale, ready]);
 
   const setLocale = useCallback((next: Locale) => {

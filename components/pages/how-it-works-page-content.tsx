@@ -20,7 +20,7 @@ import { sectionHeaderGap, sectionPaddingY } from "@/lib/section-spacing";
 import { cn } from "@/lib/utils";
 
 export function HowItWorksPageContent() {
-  const { locale, t } = useLanguage();
+  const { t } = useLanguage();
   const page = t.howItWorksPage;
 
   return (
@@ -67,7 +67,7 @@ export function HowItWorksPageContent() {
             description={page.first30Days.description}
           />
 
-          <div key={locale} className={cn("grid gap-5 md:grid-cols-3", sectionHeaderGap)}>
+          <div className={cn("grid gap-5 md:grid-cols-3", sectionHeaderGap)}>
             {page.first30Days.phases.map((phase, index) => (
               <motion.div
                 key={index}
@@ -115,7 +115,7 @@ export function HowItWorksPageContent() {
         image={images.backgrounds.contact}
         overlay="soft"
       >
-        <div key={locale} className="mx-auto grid max-w-2xl gap-3">
+        <div className="mx-auto grid max-w-2xl gap-3">
           {page.preparationChecklist.map((item, index) => (
             <motion.div
               key={index}

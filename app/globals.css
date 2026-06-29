@@ -77,10 +77,22 @@ body {
   color: #1c1c1c;
   font-family: "Outfit", ui-sans-serif, system-ui, sans-serif;
   font-size: 0.9375rem;
+  font-weight: 500;
   line-height: 1.75;
   overflow-x: clip;
   overflow-y: visible;
   min-height: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html.locale-am body {
+  font-family: "Noto Sans Ethiopic", "Outfit", ui-sans-serif, system-ui, sans-serif;
+}
+
+html.locale-om body,
+html.locale-so body {
+  font-weight: 500;
 }
 
 /* Lock scroll without shifting layout — scrollbar-gutter on html reserves space */
@@ -181,7 +193,7 @@ body[data-scroll-locked] {
   border-left: 3px solid #2b5f4b;
   background: rgba(43, 95, 75, 0.07);
   color: inherit;
-  font-weight: 500;
+  font-weight: 600;
   box-shadow: none !important;
   transition:
     background-color 0.2s ease,
@@ -330,5 +342,11 @@ nav button:hover .nav-underline {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   font-size: 0.75rem;
+  font-weight: 600;
+}
+
+/* Readable body copy — slightly darker and medium weight */
+.text-body {
   font-weight: 500;
+  color: rgba(28, 28, 28, 0.78);
 }

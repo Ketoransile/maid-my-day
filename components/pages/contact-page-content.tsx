@@ -14,7 +14,7 @@ import { cn } from "@/lib/utils";
 const officeIcons = [Clock, MessageCircle, Globe, MapPin] as const;
 
 export function ContactPageContent() {
-  const { locale, t } = useLanguage();
+  const { t } = useLanguage();
   const page = t.contactPage;
   const { office } = page;
 
@@ -35,7 +35,7 @@ export function ContactPageContent() {
         image={images.backgrounds.howItWorks}
         overlay="sage"
       >
-        <div key={locale} className="mx-auto grid max-w-3xl gap-4">
+        <div className="mx-auto grid max-w-3xl gap-4">
           {page.afterContactSteps.map((step, index) => (
             <motion.article
               key={index}
@@ -68,7 +68,7 @@ export function ContactPageContent() {
             description={office.description}
           />
 
-          <div key={locale} className={cn("grid gap-4 sm:grid-cols-2 lg:grid-cols-4", sectionHeaderGap)}>
+          <div className={cn("grid gap-4 sm:grid-cols-2 lg:grid-cols-4", sectionHeaderGap)}>
             {officeItems.map((item, index) => (
               <motion.div
                 key={index}

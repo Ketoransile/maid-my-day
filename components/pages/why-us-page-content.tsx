@@ -10,7 +10,7 @@ import { easeOut } from "@/lib/motion";
 import { sectionPaddingY } from "@/lib/section-spacing";
 
 export function WhyUsPageContent() {
-  const { locale, t } = useLanguage();
+  const { t } = useLanguage();
   const page = t.whyUsPage;
 
   return (
@@ -52,7 +52,7 @@ export function WhyUsPageContent() {
         overlay="alt"
         align="left"
       >
-        <div key={locale} className="mx-auto max-w-3xl space-y-3">
+        <div className="mx-auto max-w-3xl space-y-3">
           {page.standardsItems.map((standard, index) => (
             <motion.div
               key={index}

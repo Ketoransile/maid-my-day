@@ -16,22 +16,15 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet";
+import { LanguageSwitcher } from "@/components/layout/language-switcher";
 import { useNavbarScroll } from "@/hooks/use-navbar-scroll";
 import { useLanguage } from "@/components/providers/language-provider";
 import { SiteContainer } from "@/components/layout/site-container";
-import { languageOptions, type Locale } from "@/lib/i18n";
 import {
   allNavMenuItems,
   extendedNavLinks,
@@ -44,7 +37,7 @@ import { getLenis } from "@/lib/lenis-instance";
 import { cn } from "@/lib/utils";
 
 const navLinkClass =
-  "navbar-link inline-flex h-9 items-center gap-1 rounded-md bg-transparent px-3 text-sm font-medium text-ink/85 shadow-none transition-colors hover:bg-white/30 hover:text-ink";
+  "navbar-link inline-flex h-9 items-center gap-1 rounded-md bg-transparent px-3 text-sm font-semibold text-ink/85 shadow-none transition-colors hover:bg-white/30 hover:text-ink";
 
 const navLinkActiveClass = "bg-white/30 text-ink";
 
@@ -53,50 +46,6 @@ const contactNavClass =
 
 const chevronClass =
   "relative top-px h-3.5 w-3.5 shrink-0 opacity-60 transition-transform duration-300";
-
-function LanguageSelect({
-  className,
-  variant = "nav",
-}: {
-  className?: string;
-  variant?: "nav" | "sheet";
-}) {
-  const { locale, setLocale, t } = useLanguage();
-  const isNav = variant === "nav";
-
-  return (
-    <Select
-      value={locale}
-      onValueChange={(value) => setLocale(value as Locale)}
-    >
-      <SelectTrigger
-        className={cn(
-          isNav
-            ? cn(
-                navLinkClass,
-                "language-select-nav h-9 w-[9.5rem] min-w-[9.5rem] max-w-[9.5rem] justify-between border px-2.5 shadow-none hover:shadow-none focus:shadow-none focus-visible:shadow-none data-[state=open]:bg-[rgba(43,95,75,0.12)] data-[state=open]:text-ink [&_svg]:opacity-80",
-              )
-            : "language-select-nav mt-2 h-9 w-full justify-between border px-2.5 text-sm shadow-none",
-          className,
-        )}
-        aria-label={t.nav.language}
-      >
-        <SelectValue placeholder={t.nav.language} />
-      </SelectTrigger>
-      <SelectContent position="popper" sideOffset={4}>
-        {languageOptions.map((option) => (
-          <SelectItem
-            key={option.value}
-            value={option.value}
-            className="data-[highlighted]:bg-primary/10 data-[highlighted]:text-primary"
-          >
-            {option.label}
-          </SelectItem>
-        ))}
-      </SelectContent>
-    </Select>
-  );
-}
 
 function NavDropdownPanel({
   item,
@@ -258,7 +207,7 @@ function FullMenuSheet({
             <p className="text-xs font-medium uppercase tracking-[0.1em] text-ink/45">
               {t.nav.language}
             </p>
-            <LanguageSelect variant="sheet" />
+            <LanguageSwitcher variant="sheet" />
           </div>
         </div>
 
@@ -348,13 +297,13 @@ export function Navbar() {
 
           <NavMenuDropdowns pathname={pathname} />
 
-          <div className="flex items-center gap-2 sm:gap-3">
-            <LanguageSelect className="hidden sm:flex" />
+          <div className="flex shrink-0 items-center gap-2 sm:gap-3">
+            <LanguageSwitcher className="w-[8.25rem] min-w-[8.25rem] max-w-[8.25rem] sm:w-[9.5rem] sm:min-w-[9.5rem] sm:max-w-[9.5rem]" />
             <Link
               href="/contact"
               className={cn(
                 contactNavClass,
-                "hidden sm:inline-flex",
+                "hidden font-semibold sm:inline-flex",
                 isNavItemActive(pathname, "/contact") && "ring-2 ring-primary/25",
               )}
             >

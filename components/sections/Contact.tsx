@@ -163,7 +163,7 @@ function ServiceMultiSelect({
 }
 
 export function Contact() {
-  const { locale, t } = useLanguage();
+  const { t } = useLanguage();
   const form = t.contact.form;
   const formRef = useRef<HTMLFormElement>(null);
   const [selectedServices, setSelectedServices] = useState<string[]>([]);
@@ -214,10 +214,10 @@ export function Contact() {
       <SiteContainer className={sectionContentClass}>
         <div className="grid gap-10 lg:grid-cols-[1fr_1.1fr] lg:items-start lg:gap-14">
           <motion.div
-            key={locale}
             className="lg:pt-2"
             initial="hidden"
-            animate="visible"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-60px" }}
             variants={staggerContainer}
           >
             <motion.div variants={staggerItem}>
@@ -247,7 +247,7 @@ export function Contact() {
                   </div>
                   <div>
                     <p className="text-sm font-medium text-ink">{item.label}</p>
-                    <p className="mt-0.5 text-sm text-ink/60">{item.value}</p>
+                    <p className="mt-0.5 text-sm font-medium text-ink/75">{item.value}</p>
                   </div>
                 </motion.div>
               ))}
@@ -262,9 +262,9 @@ export function Contact() {
           </motion.div>
 
           <motion.div
-            key={locale}
             initial={{ opacity: 0, x: 24 }}
-            animate={{ opacity: 1, x: 0 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
             className="section-surface rounded-3xl p-6 sm:p-8 lg:p-9"
           >

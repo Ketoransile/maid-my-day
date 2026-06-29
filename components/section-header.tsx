@@ -1,7 +1,6 @@
 "use client";
 
-import { Reveal, RevealWords } from "@/components/motion/reveal-text";
-import { useLanguage } from "@/components/providers/language-provider";
+import { SiteContainer } from "@/components/layout/site-container";
 import { cn } from "@/lib/utils";
 
 interface SectionHeaderProps {
@@ -12,6 +11,7 @@ interface SectionHeaderProps {
   align?: "left" | "center";
 }
 
+/** Static header — avoids layout shift when locale changes */
 export function SectionHeader({
   eyebrow,
   title,
@@ -19,8 +19,6 @@ export function SectionHeader({
   className,
   align = "center",
 }: SectionHeaderProps) {
-  const { locale } = useLanguage();
-
   return (
     <div
       className={cn(
@@ -28,39 +26,31 @@ export function SectionHeader({
         className,
       )}
     >
-      <Reveal
-        as="p"
-        replayKey={locale}
+      <p
         className={cn(
           "section-label text-primary",
           align === "center" && "mx-auto",
         )}
-        delay={0.05}
       >
         {eyebrow}
-      </Reveal>
-      <RevealWords
-        as="h2"
-        replayKey={locale}
+      </p>
+      <h2
         className={cn(
           "mt-3 text-[1.5rem] font-semibold tracking-tight text-ink sm:text-[2rem] lg:text-[2.25rem]",
-          align === "center" && "justify-center",
+          align === "center" && "mx-auto",
         )}
-        text={title}
-        delay={0.12}
-      />
+      >
+        {title}
+      </h2>
       {description && (
-        <Reveal
-          as="p"
-          replayKey={locale}
+        <p
           className={cn(
-            "mt-4 text-[0.9375rem] leading-relaxed text-ink/60",
+            "mt-4 text-[0.9375rem] font-medium leading-relaxed text-ink/75",
             align === "center" && "mx-auto max-w-xl",
           )}
-          delay={0.28}
         >
           {description}
-        </Reveal>
+        </p>
       )}
     </div>
   );

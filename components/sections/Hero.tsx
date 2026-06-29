@@ -3,18 +3,23 @@
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
+import { useRef } from "react";
 
 import { HeroVideoBackground } from "@/components/hero-video-background";
 import { SiteContainer } from "@/components/layout/site-container";
 import { Reveal, RevealWords } from "@/components/motion/reveal-text";
 import { useLanguage } from "@/components/providers/language-provider";
+import { useLocaleChanged } from "@/hooks/use-locale-changed";
 import { scrollToSection } from "@/lib/smooth-scroll";
 import { Button } from "@/components/ui/button";
 import { easeOut } from "@/lib/motion";
 
 export function Hero() {
   const reduceMotion = useReducedMotion();
-  const { locale, t } = useLanguage();
+  const { t } = useLanguage();
+  const localeChanged = useLocaleChanged();
+  const hasAnimated = useRef(false);
+  const useInstantCopy = localeChanged || hasAnimated.current;
 
   return (
     <section
@@ -28,22 +33,25 @@ export function Hero() {
           initial={{ opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.75, ease: easeOut }}
+          onAnimationComplete={() => {
+            hasAnimated.current = true;
+          }}
           className="hero-copy w-full max-w-2xl lg:max-w-xl"
         >
           <Reveal
             as="p"
-            animateOnMount
-            replayKey={locale}
+            animateOnMount={!useInstantCopy}
+            instant={useInstantCopy}
             delay={0.05}
-            className="hero-eyebrow text-sm font-medium tracking-wide text-primary"
+            className="hero-eyebrow text-sm font-semibold tracking-wide text-primary"
           >
             {t.hero.eyebrow}
           </Reveal>
 
           <RevealWords
             as="h1"
-            animateOnMount
-            replayKey={locale}
+            animateOnMount={!useInstantCopy}
+            instant={useInstantCopy}
             delay={0.12}
             className="hero-title mt-3 text-[2rem] font-semibold leading-[1.1] tracking-[-0.025em] text-ink sm:mt-4 sm:text-[2.5rem] lg:text-[3.25rem] lg:leading-[1.08]"
             text={t.hero.title}
@@ -51,23 +59,23 @@ export function Hero() {
 
           <Reveal
             as="p"
-            animateOnMount
-            replayKey={locale}
+            animateOnMount={!useInstantCopy}
+            instant={useInstantCopy}
             delay={0.28}
-            className="hero-lead mt-4 max-w-lg text-base leading-relaxed text-ink/85 sm:mt-5 sm:text-lg"
+            className="hero-lead mt-4 max-w-lg text-base font-medium leading-relaxed text-ink/85 sm:mt-5 sm:text-lg"
           >
             {t.hero.lead}
           </Reveal>
 
           <Reveal
-            animateOnMount
-            replayKey={locale}
+            animateOnMount={!useInstantCopy}
+            instant={useInstantCopy}
             delay={0.4}
             className="mt-8 flex flex-col gap-3 sm:mt-9 sm:flex-row sm:flex-wrap"
           >
             <Button
               size="lg"
-              className="h-12 w-full cursor-pointer px-7 text-[15px] shadow-[0_4px_20px_rgba(43,95,75,0.25)] sm:w-auto"
+              className="h-12 w-full cursor-pointer px-7 text-[15px] font-semibold shadow-[0_4px_20px_rgba(43,95,75,0.25)] sm:w-auto"
               asChild
             >
               <Link href="/contact">{t.hero.contactUs}</Link>
@@ -75,7 +83,7 @@ export function Hero() {
             <Button
               size="lg"
               variant="ghost"
-              className="hero-btn-ghost h-12 w-full border px-7 text-[15px] shadow-none backdrop-blur-md sm:w-auto"
+              className="hero-btn-ghost h-12 w-full border px-7 text-[15px] font-semibold shadow-none backdrop-blur-md sm:w-auto"
               asChild
             >
               <Link href="/services">{t.hero.ourServices}</Link>

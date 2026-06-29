@@ -49,7 +49,7 @@ export function PageHero({
           <h1 className="mt-3 text-[1.75rem] font-semibold tracking-tight text-ink sm:text-[2.25rem] lg:text-[2.5rem]">
             {title}
           </h1>
-          <p className="mt-4 max-w-2xl text-[0.9375rem] leading-relaxed text-ink/65 sm:text-base">
+          <p className="mt-4 max-w-2xl text-[0.9375rem] font-medium leading-relaxed text-ink/75 sm:text-base">
             {description}
           </p>
         </div>

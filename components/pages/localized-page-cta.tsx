@@ -30,7 +30,7 @@ const ctaHrefs: Record<
 };
 
 export function LocalizedPageCta({ page }: { page: PageCtaKey }) {
-  const { locale, t } = useLanguage();
+  const { t } = useLanguage();
   const content = t.pageCta[page];
   const hrefs = ctaHrefs[page];
   const primaryLabel =
@@ -49,9 +49,9 @@ export function LocalizedPageCta({ page }: { page: PageCtaKey }) {
       />
       <SiteContainer className={sectionContentClass}>
         <motion.div
-          key={locale}
           initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.5 }}
           className="mx-auto max-w-2xl text-center"
         >

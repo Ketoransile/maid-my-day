@@ -30,7 +30,7 @@ export function InlineSectionHeader({
       {description && (
         <p
           className={cn(
-            "mt-4 text-[0.9375rem] leading-relaxed text-ink/60",
+            "mt-4 text-[0.9375rem] font-medium leading-relaxed text-ink/75",
             align === "center" && "mx-auto max-w-xl",
           )}
         >

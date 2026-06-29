@@ -9,6 +9,7 @@ import { SectionBackground, sectionContentClass, sectionShellClass } from "@/com
 import { SectionHeader } from "@/components/section-header";
 import { Reveal } from "@/components/motion/reveal-text";
 import { useLanguage } from "@/components/providers/language-provider";
+import { useLocaleChanged } from "@/hooks/use-locale-changed";
 import { easeOut } from "@/lib/motion";
 import { sectionHeaderGap } from "@/lib/section-spacing";
 import { cn } from "@/lib/utils";
@@ -48,20 +49,18 @@ function ServiceOrbit({
   alt,
   className,
   delay,
-  replayKey,
 }: {
   label: string;
   src: string;
   alt: string;
   className: string;
   delay: number;
-  replayKey: string;
 }) {
   return (
     <motion.div
-      key={replayKey}
       initial={{ opacity: 0, scale: 0.9, y: 12 }}
-      animate={{ opacity: 1, scale: 1, y: 0 }}
+      whileInView={{ opacity: 1, scale: 1, y: 0 }}
+      viewport={{ once: true, margin: "-40px" }}
       transition={{ duration: 0.5, delay, ease: easeOut }}
       className={cn(
         "absolute z-20 flex w-[30%] max-w-[118px] flex-col items-center gap-1.5 sm:max-w-[128px]",
@@ -89,7 +88,8 @@ function ServiceOrbit({
 }
 
 export function Mission() {
-  const { locale, t } = useLanguage();
+  const { t } = useLanguage();
+  const localeChanged = useLocaleChanged();
   const { mission } = t;
 
   return (
@@ -112,18 +112,18 @@ export function Mission() {
 
             <Reveal
               as="p"
-              replayKey={locale}
-              className="mt-5 max-w-xl text-[0.9375rem] leading-relaxed text-ink/65 sm:mt-6 sm:text-base"
+              instant={localeChanged}
+              className="mt-5 max-w-xl text-[0.9375rem] font-medium leading-relaxed text-ink/75 sm:mt-6 sm:text-base"
               delay={0.32}
             >
               {mission.body}
             </Reveal>
 
             <motion.ul
-              key={locale}
               variants={pillarContainer}
               initial="hidden"
-              animate="visible"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-60px" }}
               className={cn("space-y-3", sectionHeaderGap)}
             >
               {mission.pillars.map((pillar, index) => {
@@ -138,8 +138,8 @@ export function Mission() {
                       <Icon size={14} className="text-primary" strokeWidth={2} />
                     </span>
                     <div>
-                      <p className="font-medium text-ink">{pillar.title}</p>
-                      <p className="mt-1.5 text-sm leading-relaxed text-ink/65">
+                      <p className="font-semibold text-ink">{pillar.title}</p>
+                      <p className="mt-1.5 text-sm font-medium leading-relaxed text-ink/75">
                         {pillar.detail}
                       </p>
                     </div>
@@ -149,18 +149,11 @@ export function Mission() {
             </motion.ul>
           </div>
 
-          <motion.div
-            key={locale}
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, ease: easeOut }}
-            className="order-2 lg:order-1"
-          >
+          <div className="order-2 lg:order-1">
             <div className="relative mx-auto h-[360px] w-full max-w-[400px] overflow-visible pt-8 sm:h-[420px] sm:max-w-[440px] lg:mx-0">
               {mission.serviceOrbits.map((service, index) => (
                 <ServiceOrbit
                   key={service.id}
-                  replayKey={`${locale}-${service.id}`}
                   label={service.label}
                   src={serviceImageMap[service.id as keyof typeof serviceImageMap]}
                   alt={service.alt}
@@ -171,7 +164,8 @@ export function Mission() {
 
               <motion.div
                 initial={{ opacity: 0, scale: 0.94 }}
-                animate={{ opacity: 1, scale: 1 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true, margin: "-40px" }}
                 transition={{ duration: 0.65, delay: 0.05, ease: easeOut }}
                 className="absolute left-1/2 top-1/2 z-10 w-[56%] max-w-[240px] -translate-x-1/2 -translate-y-1/2"
               >
@@ -184,7 +178,7 @@ export function Mission() {
                 </div>
               </motion.div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </SiteContainer>
     </section>

@@ -32,7 +32,7 @@ const cardVariants = {
 };
 
 export function Services() {
-  const { locale, t } = useLanguage();
+  const { t } = useLanguage();
 
   return (
     <section id="services" className={`${sectionShellClass} ${sectionPaddingY}`}>
@@ -50,10 +50,10 @@ export function Services() {
         />
 
         <motion.div
-          key={locale}
           variants={containerVariants}
           initial="hidden"
-          animate="visible"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-40px" }}
           className={cn(
             "grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3",
             sectionHeaderGap,
