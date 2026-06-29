@@ -44,9 +44,19 @@ export function HeroVideoBackground() {
       }
     };
 
+    const onError = () => {
+      setShowVideo(false);
+    };
+
+    const onLoadedData = () => {
+      tryPlay();
+    };
+
     video.addEventListener("playing", onPlaying);
     video.addEventListener("timeupdate", onTimeUpdate);
     video.addEventListener("canplay", tryPlay);
+    video.addEventListener("loadeddata", onLoadedData);
+    video.addEventListener("error", onError);
     document.addEventListener("visibilitychange", onVisibilityChange);
     document.addEventListener("pointerdown", onInteraction, { once: true });
 
@@ -58,6 +68,8 @@ export function HeroVideoBackground() {
       video.removeEventListener("playing", onPlaying);
       video.removeEventListener("timeupdate", onTimeUpdate);
       video.removeEventListener("canplay", tryPlay);
+      video.removeEventListener("loadeddata", onLoadedData);
+      video.removeEventListener("error", onError);
       document.removeEventListener("visibilitychange", onVisibilityChange);
       document.removeEventListener("pointerdown", onInteraction);
     };
@@ -79,6 +91,7 @@ export function HeroVideoBackground() {
       <video
         ref={videoRef}
         src={images.heroVideo}
+        poster={images.hero}
         autoPlay
         muted
         loop
