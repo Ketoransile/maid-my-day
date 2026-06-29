@@ -31,6 +31,15 @@ export const soOverrides: DeepPartial<Translations> = {
       blog: "Blog",
       press: "Warbaahinta",
     },
+    compact: {
+      home: "Guriga",
+      services: "Adeegyo",
+      howItWorks: "Habka",
+      whyUs: "Annaga",
+      faq: "FAQ",
+      contact: "Xiriir",
+      contactUs: "Xiriir",
+    },
   },
   hero: {
     eyebrow: "Maid My Day Guri & Adeegga Degaanka",

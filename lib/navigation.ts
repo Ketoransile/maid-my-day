@@ -136,3 +136,16 @@ export function getNavSubmenuLabel(
   const group = submenu[itemKey] as Record<string, string>;
   return group[labelKey] ?? labelKey;
 }
+
+export type NavBarLabelKey = keyof NonNullable<Translations["nav"]["compact"]>;
+
+export function getNavBarLabel(
+  nav: Translations["nav"],
+  key: NavBarLabelKey,
+): string {
+  return nav.compact?.[key] ?? nav[key];
+}
+
+export function usesCompactNavBar(nav: Translations["nav"]) {
+  return Boolean(nav.compact);
+}

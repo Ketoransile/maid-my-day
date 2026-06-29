@@ -10,10 +10,10 @@ export type Locale = (typeof locales)[number];
 export const defaultLocale: Locale = "en";
 
 export const languageOptions = [
-  { value: "en" as const, label: "English" },
-  { value: "am" as const, label: "አማርኛ" },
-  { value: "om" as const, label: "Afaan Oromoo" },
-  { value: "so" as const, label: "Soomaali" },
+  { value: "en" as const, label: "English", badge: "EN", subtitle: "English" },
+  { value: "am" as const, label: "አማርኛ", badge: "አማ", subtitle: "Amharic" },
+  { value: "om" as const, label: "Afaan Oromoo", badge: "OM", subtitle: "Oromo" },
+  { value: "so" as const, label: "Soomaali", badge: "SO", subtitle: "Somali" },
 ] as const;
 
 const localeMap: Record<Locale, Translations> = {

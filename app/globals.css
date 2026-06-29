@@ -96,9 +96,16 @@ html.locale-so body {
 }
 
 /* Lock scroll without shifting layout — scrollbar-gutter on html reserves space */
-html[data-scroll-locked],
+html[data-scroll-locked] {
+  overflow: hidden !important;
+  scrollbar-gutter: stable;
+}
+
 body[data-scroll-locked] {
   overflow: hidden !important;
+  /* Radix/react-remove-scroll adds padding-right; gutter already reserves space */
+  padding-right: 0 !important;
+  margin-right: 0 !important;
 }
 
 .glass {
@@ -174,6 +181,10 @@ body[data-scroll-locked] {
   text-shadow: 0 0 24px rgba(255, 255, 255, 0.95);
 }
 
+.navbar-over-hero .navbar-link-active {
+  text-shadow: none;
+}
+
 .navbar-brand {
   cursor: pointer;
 }
@@ -187,37 +198,60 @@ body[data-scroll-locked] {
   box-shadow: 0 4px 24px rgba(28, 28, 28, 0.04);
 }
 
-/* Navbar language select — brand accent without layout shift */
-.language-select-nav {
-  border: 1px solid rgba(43, 95, 75, 0.3);
-  border-left: 3px solid #2b5f4b;
-  background: rgba(43, 95, 75, 0.07);
-  color: inherit;
+/* Navbar language switcher — pill trigger, no scroll lock */
+.language-switcher-trigger {
+  border: 1px solid rgba(43, 95, 75, 0.22);
+  background: rgba(255, 255, 255, 0.72);
+  color: #1c1c1c;
   font-weight: 600;
-  box-shadow: none !important;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.65) inset;
   transition:
     background-color 0.2s ease,
-    border-color 0.2s ease;
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
-.language-select-nav:hover {
-  background: rgba(43, 95, 75, 0.11);
-  border-color: rgba(43, 95, 75, 0.4);
-  border-left-color: #2b5f4b;
+.language-switcher-trigger:hover {
+  background: rgba(43, 95, 75, 0.08);
+  border-color: rgba(43, 95, 75, 0.32);
 }
 
-.language-select-nav:focus-visible,
-.language-select-nav[data-state="open"] {
-  background: rgba(43, 95, 75, 0.12);
-  border-color: rgba(43, 95, 75, 0.45);
-  border-left-color: #2b5f4b;
-  box-shadow: inset 0 0 0 1px rgba(43, 95, 75, 0.15) !important;
+.language-switcher-trigger-open,
+.language-switcher-trigger:focus-visible {
+  background: rgba(43, 95, 75, 0.1);
+  border-color: rgba(43, 95, 75, 0.38);
+  box-shadow:
+    inset 0 0 0 1px rgba(43, 95, 75, 0.12),
+    0 1px 0 rgba(255, 255, 255, 0.65) inset;
   outline: none;
 }
 
-.language-select-nav svg {
+.language-switcher-badge {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.75rem;
+  height: 1.375rem;
+  padding: 0 0.35rem;
+  border-radius: 0.375rem;
+  background: rgba(43, 95, 75, 0.14);
   color: #2b5f4b;
-  opacity: 0.8;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+
+.navbar-over-hero .language-switcher-trigger {
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.language-switcher-sheet-card:focus-visible {
+  outline: 2px solid rgba(43, 95, 75, 0.35);
+  outline-offset: 2px;
 }
 
 .navbar-menu-btn {
@@ -297,7 +331,50 @@ nav button:hover .nav-underline {
 
 .hero-video-layer {
   transform: scale(1.04);
-  object-position: 60% center;
+  object-position: 50% 28%;
+}
+
+@media (min-width: 640px) {
+  .hero-video-layer,
+  .hero-poster-layer {
+    object-position: 60% center;
+  }
+}
+
+.hero-copy-top {
+  position: relative;
+}
+
+.hero-mobile-dock {
+  width: 100%;
+  padding-bottom: 0.25rem;
+}
+
+@media (max-width: 639px) {
+  .hero-copy .hero-title,
+  .hero-copy .hero-lead,
+  .hero-copy .hero-eyebrow {
+    text-shadow: none;
+  }
+
+  .hero-mobile-dock .hero-btn-ghost {
+    border: 1px solid rgba(28, 28, 28, 0.1) !important;
+    background-color: #ffffff !important;
+    color: #1c1c1c !important;
+    box-shadow: 0 1px 2px rgba(28, 28, 28, 0.05);
+  }
+
+  .hero-mobile-dock .hero-btn-ghost:hover {
+    background-color: #f7f7f7 !important;
+    border-color: rgba(28, 28, 28, 0.14) !important;
+    color: #1c1c1c !important;
+  }
+}
+
+@media (min-width: 640px) {
+  .hero-mobile-dock {
+    padding-bottom: 0;
+  }
 }
 
 .hero-copy .hero-title {

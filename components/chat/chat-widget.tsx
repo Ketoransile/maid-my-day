@@ -162,11 +162,11 @@ export function ChatWidget() {
             aria-modal="true"
             aria-label={ui.panelAriaLabel}
             className={cn(
-              "section-surface flex w-[min(100vw-2rem,24rem)] flex-col overflow-hidden rounded-2xl",
+              "flex w-[min(100vw-2rem,24rem)] flex-col overflow-hidden rounded-2xl border border-ink/8 bg-white",
               "h-[min(70dvh,32rem)] shadow-[0_16px_48px_rgba(28,28,28,0.14)]",
             )}
           >
-            <header className="flex items-start justify-between gap-3 border-b border-ink/6 bg-primary/[0.04] px-4 py-3.5">
+            <header className="flex items-start justify-between gap-3 border-b border-ink/8 bg-white px-4 py-3.5">
               <div className="flex items-start gap-2.5">
                 <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary text-white">
                   <Sparkles size={16} strokeWidth={1.75} />
@@ -189,7 +189,7 @@ export function ChatWidget() {
             </header>
 
             <div
-              className="flex-1 space-y-3 overflow-y-auto px-4 py-4"
+              className="flex-1 space-y-3 overflow-y-auto bg-white px-4 py-4"
               aria-live="polite"
               aria-relevant="additions"
             >
@@ -206,7 +206,7 @@ export function ChatWidget() {
                       "max-w-[88%] rounded-2xl px-3.5 py-2.5 text-[0.875rem] leading-relaxed",
                       message.role === "user"
                         ? "rounded-br-md bg-primary text-white"
-                        : "rounded-bl-md bg-white/90 text-ink/85 shadow-sm ring-1 ring-ink/6",
+                        : "rounded-bl-md bg-ink/[0.05] text-ink/85 ring-1 ring-ink/8",
                     )}
                   >
                     <p className="whitespace-pre-line">{message.content}</p>
@@ -230,7 +230,7 @@ export function ChatWidget() {
 
               {isTyping && (
                 <div className="flex justify-start" aria-label={ui.typingLabel}>
-                  <div className="rounded-2xl rounded-bl-md bg-white/90 px-3.5 py-3 shadow-sm ring-1 ring-ink/6">
+                  <div className="rounded-2xl rounded-bl-md bg-ink/[0.05] px-3.5 py-3 ring-1 ring-ink/8">
                     <span className="flex gap-1">
                       <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-ink/35 [animation-delay:0ms]" />
                       <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-ink/35 [animation-delay:120ms]" />
@@ -244,7 +244,7 @@ export function ChatWidget() {
             </div>
 
             {showQuickPrompts && (
-              <div className="border-t border-ink/6 px-4 py-3">
+              <div className="border-t border-ink/8 bg-white px-4 py-3">
                 <p className="mb-2 text-[11px] font-medium uppercase tracking-wide text-ink/45">
                   {ui.quickQuestionsLabel}
                 </p>
@@ -254,7 +254,7 @@ export function ChatWidget() {
                       key={prompt}
                       type="button"
                       onClick={() => sendMessage(prompt)}
-                      className="rounded-full border border-ink/8 bg-white/80 px-3 py-1.5 text-left text-xs text-ink/75 transition-colors hover:border-primary/25 hover:bg-primary/[0.05] hover:text-ink"
+                      className="rounded-full border border-ink/10 bg-ink/[0.04] px-3 py-1.5 text-left text-xs text-ink/75 transition-colors hover:border-primary/25 hover:bg-primary/[0.05] hover:text-ink"
                     >
                       {prompt}
                     </button>
@@ -264,7 +264,7 @@ export function ChatWidget() {
             )}
 
             <form
-              className="border-t border-ink/6 bg-white/70 p-3"
+              className="border-t border-ink/8 bg-white p-3"
               onSubmit={(event) => {
                 event.preventDefault();
                 sendMessage(input);

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { ChevronDown, Gem, Menu } from "lucide-react";
 
@@ -28,35 +28,50 @@ import { SiteContainer } from "@/components/layout/site-container";
 import {
   allNavMenuItems,
   extendedNavLinks,
+  getNavBarLabel,
   getNavSubmenuLabel,
   homeNavHref,
   isNavItemActive,
+  usesCompactNavBar,
   type NavMenuItem,
 } from "@/lib/navigation";
 import { getLenis } from "@/lib/lenis-instance";
+import { scrollToSection } from "@/lib/smooth-scroll";
 import { cn } from "@/lib/utils";
 
 const navLinkClass =
   "navbar-link inline-flex h-9 items-center gap-1 rounded-md bg-transparent px-3 text-sm font-semibold text-ink/85 shadow-none transition-colors hover:bg-white/30 hover:text-ink";
 
-const navLinkActiveClass = "bg-white/30 text-ink";
+const navLinkCompactClass =
+  "navbar-link inline-flex h-9 items-center gap-0.5 rounded-md bg-transparent px-2 text-[13px] font-semibold leading-none text-ink/85 shadow-none transition-colors hover:bg-white/30 hover:text-ink";
 
-const contactNavClass =
-  "navbar-contact-btn inline-flex h-9 items-center rounded-md px-3 text-sm font-medium shadow-none transition-colors";
+const navLinkActiveClass =
+  "bg-primary text-primary-foreground shadow-none hover:bg-primary/90 hover:text-primary-foreground data-[state=open]:bg-primary data-[state=open]:text-primary-foreground";
 
 const chevronClass =
   "relative top-px h-3.5 w-3.5 shrink-0 opacity-60 transition-transform duration-300";
 
+const chevronActiveClass = "text-primary-foreground opacity-90";
+
+const contactNavClass =
+  "navbar-contact-btn inline-flex h-9 items-center rounded-md px-3 text-sm font-medium shadow-none transition-colors";
+
 function NavDropdownPanel({
   item,
   pathname,
+  compact,
 }: {
   item: NavMenuItem;
   pathname: string;
+  compact: boolean;
 }) {
   const { t } = useLanguage();
   const isActive = isNavItemActive(pathname, item.href);
-  const title = item.key === "home" ? t.nav.home : t.nav[item.key];
+  const linkClass = compact ? navLinkCompactClass : navLinkClass;
+  const title =
+    item.key === "home"
+      ? getNavBarLabel(t.nav, "home")
+      : getNavBarLabel(t.nav, item.key);
 
   return (
     <NavigationMenuItem className="relative">
@@ -64,14 +79,20 @@ function NavDropdownPanel({
         <Link
           href={item.href}
           className={cn(
-            navLinkClass,
-            "group data-[state=open]:bg-white/30 data-[state=open]:text-ink",
-            isActive && navLinkActiveClass,
+            linkClass,
+            "group navbar-link-item",
+            isActive
+              ? cn("navbar-link-active", navLinkActiveClass)
+              : "data-[state=open]:bg-white/30 data-[state=open]:text-ink",
           )}
         >
           {title}
           <ChevronDown
-            className={cn(chevronClass, "group-data-[state=open]:rotate-180")}
+            className={cn(
+              chevronClass,
+              "group-data-[state=open]:rotate-180",
+              isActive && chevronActiveClass,
+            )}
             aria-hidden="true"
           />
         </Link>
@@ -106,12 +127,23 @@ function NavDropdownPanel({
   );
 }
 
-function NavMenuDropdowns({ pathname }: { pathname: string }) {
+function NavMenuDropdowns({
+  pathname,
+  compact,
+}: {
+  pathname: string;
+  compact: boolean;
+}) {
   return (
     <NavigationMenu className="relative z-10 hidden max-w-max lg:flex">
-      <NavigationMenuList>
+      <NavigationMenuList className={cn(compact && "gap-0")}>
         {allNavMenuItems.map((item) => (
-          <NavDropdownPanel key={item.key} item={item} pathname={pathname} />
+          <NavDropdownPanel
+            key={item.key}
+            item={item}
+            pathname={pathname}
+            compact={compact}
+          />
         ))}
       </NavigationMenuList>
     </NavigationMenu>
@@ -202,17 +234,11 @@ function FullMenuSheet({
               Maid My Day
             </SheetTitle>
           </SheetHeader>
-
-          <div className="mt-6">
-            <p className="text-xs font-medium uppercase tracking-[0.1em] text-ink/45">
-              {t.nav.language}
-            </p>
-            <LanguageSwitcher variant="sheet" />
-          </div>
         </div>
 
         <div className="flex-1 overflow-y-auto overscroll-contain px-6 pb-6 pt-2">
           <nav className="space-y-1">
+            <LanguageSwitcher variant="sheet" chevronClassName={chevronClass} />
             {allNavMenuItems.map((item) => (
               <MobileNavSection
                 key={item.key}
@@ -256,11 +282,26 @@ function FullMenuSheet({
 export function Navbar() {
   const scrolled = useNavbarScroll(48);
   const pathname = usePathname();
+  const router = useRouter();
   const [menuOpen, setMenuOpen] = useState(false);
   const { t } = useLanguage();
 
   const isHome = pathname === homeNavHref;
   const showGlass = scrolled || !isHome || menuOpen;
+  const compactNav = usesCompactNavBar(t.nav);
+
+  const handleBrandClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+    setMenuOpen(false);
+
+    if (pathname === homeNavHref) {
+      scrollToSection("hero");
+      window.history.replaceState(null, "", homeNavHref);
+      return;
+    }
+
+    router.push(`${homeNavHref}#hero`);
+  };
 
   useEffect(() => {
     const lenis = getLenis();
@@ -288,26 +329,28 @@ export function Navbar() {
       >
         <SiteContainer className="flex h-16 items-center justify-between gap-3">
           <Link
-            href={homeNavHref}
+            href={`${homeNavHref}#hero`}
+            onClick={handleBrandClick}
             className="navbar-brand flex shrink-0 cursor-pointer items-center gap-2"
           >
             <Gem size={18} className="text-primary" strokeWidth={1.5} />
             <span className="text-[17px] font-semibold text-ink">Maid My Day</span>
           </Link>
 
-          <NavMenuDropdowns pathname={pathname} />
+          <NavMenuDropdowns pathname={pathname} compact={compactNav} />
 
           <div className="flex shrink-0 items-center gap-2 sm:gap-3">
-            <LanguageSwitcher className="w-[8.25rem] min-w-[8.25rem] max-w-[8.25rem] sm:w-[9.5rem] sm:min-w-[9.5rem] sm:max-w-[9.5rem]" />
+            <LanguageSwitcher />
             <Link
               href="/contact"
               className={cn(
                 contactNavClass,
                 "hidden font-semibold sm:inline-flex",
+                compactNav && "px-2 text-[13px]",
                 isNavItemActive(pathname, "/contact") && "ring-2 ring-primary/25",
               )}
             >
-              {t.nav.contactUs}
+              {getNavBarLabel(t.nav, "contactUs")}
             </Link>
             <Button
               type="button"

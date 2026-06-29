@@ -71,7 +71,7 @@ export function HeroVideoBackground() {
         src={images.hero}
         alt=""
         className={cn(
-          "hero-poster-layer absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ease-out",
+          "hero-poster-layer absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ease-out [object-position:50%_28%] sm:[object-position:60%_center]",
           showVideo ? "opacity-0" : "opacity-100",
         )}
       />
@@ -85,16 +85,19 @@ export function HeroVideoBackground() {
         playsInline
         preload="auto"
         className={cn(
-          "hero-video-layer absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ease-out",
+          "hero-video-layer absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ease-out [object-position:50%_28%] sm:[object-position:60%_center]",
           showVideo ? "opacity-100" : "opacity-0",
         )}
       />
 
-      {/* Soft top fade so nav links stay readable over the video */}
-      <div className="absolute inset-x-0 top-0 z-10 h-28 bg-gradient-to-b from-white/55 to-transparent" />
-      {/* Cinematic scrim — stronger on left/bottom, video visible top-right */}
-      <div className="absolute inset-0 z-10 bg-gradient-to-t from-white from-0% via-white/70 via-35% to-transparent to-72%" />
-      <div className="absolute inset-0 z-10 bg-gradient-to-r from-white/80 from-0% via-white/30 via-40% to-transparent to-85%" />
+      {/* Nav readability fade */}
+      <div className="absolute inset-x-0 top-0 z-10 h-20 bg-gradient-to-b from-white/70 to-transparent sm:h-28 sm:from-white/55" />
+      {/* Mobile — top/bottom scrims with open center for video (native app feel) */}
+      <div className="absolute inset-x-0 top-0 z-10 h-[46%] bg-gradient-to-b from-white via-white/88 to-transparent sm:hidden" />
+      <div className="absolute inset-x-0 bottom-0 z-10 h-[42%] bg-gradient-to-t from-white via-white/94 to-transparent sm:hidden" />
+      {/* Desktop cinematic scrim */}
+      <div className="absolute inset-0 z-10 hidden bg-gradient-to-t from-white from-0% via-white/70 via-35% to-transparent to-72% sm:block" />
+      <div className="absolute inset-0 z-10 hidden bg-gradient-to-r from-white/80 from-0% via-white/30 via-40% to-transparent to-85% sm:block" />
       <div className="absolute inset-0 z-10 bg-primary/[0.04]" />
     </div>
   );

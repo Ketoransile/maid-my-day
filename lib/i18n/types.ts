@@ -86,6 +86,16 @@ export type Translations = {
       blog: string;
       press: string;
     };
+    /** Shorter labels for the desktop navbar (om/so) */
+    compact?: {
+      home: string;
+      services: string;
+      howItWorks: string;
+      whyUs: string;
+      faq: string;
+      contact: string;
+      contactUs: string;
+    };
   };
   hero: {
     eyebrow: string;

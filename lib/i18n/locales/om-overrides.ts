@@ -29,6 +29,15 @@ export const omOverrides: DeepPartial<Translations> = {
       blog: "Biloogii",
       press: "Gaazexeessaa",
     },
+    compact: {
+      home: "Mana",
+      services: "Tajaajila",
+      howItWorks: "Akkaata",
+      whyUs: "Maaliif nu",
+      faq: "FAQ",
+      contact: "Quunnam",
+      contactUs: "Quunnamaa",
+    },
   },
   hero: {
     eyebrow: "Maid My Day Mana fi Jijjiirraa Tajaajila",
