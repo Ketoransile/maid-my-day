@@ -26,7 +26,58 @@ export type Translations = {
     openMenu: string;
     allLinks: string;
     language: string;
-    submenu: { overview: string; getStarted: string; learnMore: string };
+    submenu: {
+      home: {
+        overview: string;
+        welcome: string;
+        services: string;
+        packages: string;
+        howItWorks: string;
+        whyUs: string;
+        contact: string;
+      };
+      services: {
+        overview: string;
+        serviceGrid: string;
+        housing: string;
+        housemaids: string;
+        drivers: string;
+        areas: string;
+        packages: string;
+      };
+      howItWorks: {
+        overview: string;
+        steps: string;
+        detailedProcess: string;
+        first30Days: string;
+        prepare: string;
+        processFaq: string;
+      };
+      whyUs: {
+        overview: string;
+        whyUs: string;
+        whoWeServe: string;
+        standards: string;
+        testimonials: string;
+        mission: string;
+        ourStory: string;
+      };
+      faq: {
+        overview: string;
+        commonQuestions: string;
+        moreAnswers: string;
+        stillWondering: string;
+        contactSupport: string;
+      };
+      contact: {
+        overview: string;
+        contactForm: string;
+        afterContact: string;
+        officeInfo: string;
+        prepTips: string;
+        callUs: string;
+      };
+    };
     extended: {
       about: string;
       careers: string;

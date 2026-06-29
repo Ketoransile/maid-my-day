@@ -31,6 +31,7 @@ import {
 } from "@/lib/page-content";
 
 import type { Translations } from "./types";
+import { navSubmenusEn } from "./nav-submenus";
 
 const serviceIdMap: Record<string, string> = {
   housing: "housing",
@@ -52,11 +53,7 @@ export const en: Translations = {
     openMenu: "Open menu",
     allLinks: "All Links",
     language: "Language",
-    submenu: {
-      overview: "Overview",
-      getStarted: "Get Started",
-      learnMore: "Learn More",
-    },
+    submenu: navSubmenusEn,
     extended: {
       about: "About Maid My Day",
       careers: "Careers",

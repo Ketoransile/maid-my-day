@@ -48,18 +48,20 @@ function ServiceOrbit({
   alt,
   className,
   delay,
+  replayKey,
 }: {
   label: string;
   src: string;
   alt: string;
   className: string;
   delay: number;
+  replayKey: string;
 }) {
   return (
     <motion.div
+      key={replayKey}
       initial={{ opacity: 0, scale: 0.9, y: 12 }}
-      whileInView={{ opacity: 1, scale: 1, y: 0 }}
-      viewport={{ once: true, margin: "-40px" }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
       transition={{ duration: 0.5, delay, ease: easeOut }}
       className={cn(
         "absolute z-20 flex w-[30%] max-w-[118px] flex-col items-center gap-1.5 sm:max-w-[128px]",
@@ -110,6 +112,7 @@ export function Mission() {
 
             <Reveal
               as="p"
+              replayKey={locale}
               className="mt-5 max-w-xl text-[0.9375rem] leading-relaxed text-ink/65 sm:mt-6 sm:text-base"
               delay={0.32}
             >
@@ -147,9 +150,9 @@ export function Mission() {
           </div>
 
           <motion.div
+            key={locale}
             initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, ease: easeOut }}
             className="order-2 lg:order-1"
           >
@@ -157,6 +160,7 @@ export function Mission() {
               {mission.serviceOrbits.map((service, index) => (
                 <ServiceOrbit
                   key={service.id}
+                  replayKey={`${locale}-${service.id}`}
                   label={service.label}
                   src={serviceImageMap[service.id as keyof typeof serviceImageMap]}
                   alt={service.alt}
@@ -167,8 +171,7 @@ export function Mission() {
 
               <motion.div
                 initial={{ opacity: 0, scale: 0.94 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, margin: "-40px" }}
+                animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.65, delay: 0.05, ease: easeOut }}
                 className="absolute left-1/2 top-1/2 z-10 w-[56%] max-w-[240px] -translate-x-1/2 -translate-y-1/2"
               >

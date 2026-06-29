@@ -1,6 +1,7 @@
 "use client";
 
 import { Reveal, RevealWords } from "@/components/motion/reveal-text";
+import { useLanguage } from "@/components/providers/language-provider";
 import { cn } from "@/lib/utils";
 
 interface SectionHeaderProps {
@@ -18,6 +19,8 @@ export function SectionHeader({
   className,
   align = "center",
 }: SectionHeaderProps) {
+  const { locale } = useLanguage();
+
   return (
     <div
       className={cn(
@@ -27,6 +30,7 @@ export function SectionHeader({
     >
       <Reveal
         as="p"
+        replayKey={locale}
         className={cn(
           "section-label text-primary",
           align === "center" && "mx-auto",
@@ -37,6 +41,7 @@ export function SectionHeader({
       </Reveal>
       <RevealWords
         as="h2"
+        replayKey={locale}
         className={cn(
           "mt-3 text-[1.5rem] font-semibold tracking-tight text-ink sm:text-[2rem] lg:text-[2.25rem]",
           align === "center" && "justify-center",
@@ -47,6 +52,7 @@ export function SectionHeader({
       {description && (
         <Reveal
           as="p"
+          replayKey={locale}
           className={cn(
             "mt-4 text-[0.9375rem] leading-relaxed text-ink/60",
             align === "center" && "mx-auto max-w-xl",

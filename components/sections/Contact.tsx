@@ -262,9 +262,9 @@ export function Contact() {
           </motion.div>
 
           <motion.div
+            key={locale}
             initial={{ opacity: 0, x: 24 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
             className="section-surface rounded-3xl p-6 sm:p-8 lg:p-9"
           >

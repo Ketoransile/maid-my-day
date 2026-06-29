@@ -1,4 +1,5 @@
 import type { DeepPartial, Translations } from "../types";
+import { navSubmenusOm } from "../nav-submenus";
 import { servicesPageOm } from "./pages/services-page-om";
 import { coreSectionsOm } from "./pages/core-sections-om";
 import { howItWorksPageOm } from "./pages/how-it-works-page-om";
@@ -19,11 +20,7 @@ export const omOverrides: DeepPartial<Translations> = {
     openMenu: "Baafata bani",
     allLinks: "Hidhamtoonni hunda",
     language: "Afaan",
-    submenu: {
-      overview: "Haala waliigalaa",
-      getStarted: "Jalqabi",
-      learnMore: "Caalaatti baradhu",
-    },
+    submenu: navSubmenusOm,
     extended: {
       about: "Waa'ee Maid My Day",
       careers: "Hojiiwwan",

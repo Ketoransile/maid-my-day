@@ -28,7 +28,7 @@ type HowItWorksProps = {
 };
 
 export function HowItWorks({ variant = "hero" }: HowItWorksProps) {
-  const { t } = useLanguage();
+  const { locale, t } = useLanguage();
   const isPage = variant === "page";
   const steps = t.howItWorks.steps;
 
@@ -49,11 +49,12 @@ export function HowItWorks({ variant = "hero" }: HowItWorksProps) {
           />
         ) : (
           <div className="max-w-xl">
-            <Reveal as="p" className="text-xs font-medium uppercase tracking-[0.1em] text-white/60" delay={0.05}>
+            <Reveal as="p" replayKey={locale} className="text-xs font-medium uppercase tracking-[0.1em] text-white/60" delay={0.05}>
               {t.howItWorks.eyebrow}
             </Reveal>
             <RevealWords
               as="h2"
+              replayKey={locale}
               className="mt-3 text-[1.625rem] font-semibold text-white sm:text-[2rem] lg:text-[2.25rem]"
               text={t.howItWorks.title}
               delay={0.12}
@@ -62,10 +63,10 @@ export function HowItWorks({ variant = "hero" }: HowItWorksProps) {
         )}
 
         <motion.div
+          key={locale}
           variants={container}
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-80px" }}
+          animate="visible"
           className={cn("grid gap-8 md:grid-cols-3", sectionHeaderGap)}
         >
           {steps.map((step) => (
@@ -89,8 +90,7 @@ export function HowItWorks({ variant = "hero" }: HowItWorksProps) {
                       isPage ? "text-primary/20" : "text-white/20",
                     )}
                     initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
+                    animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.5, ease: easeOut }}
                   >
                     {step.number}

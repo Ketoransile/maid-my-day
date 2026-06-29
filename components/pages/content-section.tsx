@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 
 import { SiteContainer } from "@/components/layout/site-container";
 import { SectionHeader } from "@/components/section-header";
+import { useLanguage } from "@/components/providers/language-provider";
 import {
   SectionBackground,
   sectionContentClass,
@@ -39,6 +40,8 @@ export function ContentSection({
   className,
   children,
 }: ContentSectionProps) {
+  const { locale } = useLanguage();
+
   return (
     <section
       id={id}
@@ -63,10 +66,10 @@ export function ContentSection({
           align={align}
         />
         <motion.div
+          key={locale}
           variants={staggerContainer}
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
+          animate="visible"
           className={sectionHeaderGap}
         >
           <motion.div variants={staggerItem}>{children}</motion.div>

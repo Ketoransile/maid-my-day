@@ -1,4 +1,5 @@
 import type { DeepPartial, Translations } from "../types";
+import { navSubmenusSo } from "../nav-submenus";
 import { servicesPageSo } from "./pages/services-page-so";
 import { coreSectionsSo } from "./pages/core-sections-so";
 import {
@@ -21,11 +22,7 @@ export const soOverrides: DeepPartial<Translations> = {
     openMenu: "Fur liiska",
     allLinks: "Dhammaan xiriiriyeyaasha",
     language: "Luuqad",
-    submenu: {
-      overview: "Dulmar",
-      getStarted: "Bilow",
-      learnMore: "Wax badan baro",
-    },
+    submenu: navSubmenusSo,
     extended: {
       about: "Ku saabsan Maid My Day",
       careers: "Shaqooyin",

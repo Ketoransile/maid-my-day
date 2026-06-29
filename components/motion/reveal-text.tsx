@@ -13,6 +13,8 @@ type RevealProps = {
   delay?: number;
   as?: TextTag;
   animateOnMount?: boolean;
+  /** Remount and replay when locale or content identity changes */
+  replayKey?: string;
 } & Omit<HTMLMotionProps<"div">, "children">;
 
 export function Reveal({
@@ -21,6 +23,7 @@ export function Reveal({
   delay = 0,
   as = "div",
   animateOnMount = false,
+  replayKey,
   ...props
 }: RevealProps) {
   const reduceMotion = useReducedMotion();
@@ -31,12 +34,14 @@ export function Reveal({
     return <Tag className={className}>{children}</Tag>;
   }
 
-  const motionProps = animateOnMount
+  const shouldAnimateOnMount = animateOnMount || Boolean(replayKey);
+  const motionProps = shouldAnimateOnMount
     ? { initial: "hidden", animate: "visible" }
     : { initial: "hidden", whileInView: "visible", viewport: viewportOnce };
 
   return (
     <Component
+      key={replayKey}
       className={className}
       variants={blurReveal}
       transition={{ delay, duration: 0.65, ease: easeOut }}
@@ -54,6 +59,7 @@ type RevealWordsProps = {
   delay?: number;
   as?: TextTag;
   animateOnMount?: boolean;
+  replayKey?: string;
 };
 
 export function RevealWords({
@@ -62,6 +68,7 @@ export function RevealWords({
   delay = 0,
   as = "h2",
   animateOnMount = false,
+  replayKey,
 }: RevealWordsProps) {
   const reduceMotion = useReducedMotion();
   const words = text.split(" ");
@@ -72,12 +79,14 @@ export function RevealWords({
     return <Tag className={className}>{text}</Tag>;
   }
 
-  const motionProps = animateOnMount
+  const shouldAnimateOnMount = animateOnMount || Boolean(replayKey);
+  const motionProps = shouldAnimateOnMount
     ? { initial: "hidden", animate: "visible" }
     : { initial: "hidden", whileInView: "visible", viewport: viewportOnce };
 
   return (
     <Component
+      key={replayKey ?? text}
       className={cn(className, "flex flex-wrap gap-x-[0.3em]")}
       custom={delay}
       variants={wordStaggerContainer}
@@ -85,7 +94,7 @@ export function RevealWords({
     >
       {words.map((word, index) => (
         <motion.span
-          key={`${word}-${index}`}
+          key={index}
           className="inline-block"
           variants={wordReveal}
         >

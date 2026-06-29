@@ -14,7 +14,7 @@ import { cn } from "@/lib/utils";
 const officeIcons = [Clock, MessageCircle, Globe, MapPin] as const;
 
 export function ContactPageContent() {
-  const { t } = useLanguage();
+  const { locale, t } = useLanguage();
   const page = t.contactPage;
   const { office } = page;
 
@@ -35,13 +35,12 @@ export function ContactPageContent() {
         image={images.backgrounds.howItWorks}
         overlay="sage"
       >
-        <div className="mx-auto grid max-w-3xl gap-4">
+        <div key={locale} className="mx-auto grid max-w-3xl gap-4">
           {page.afterContactSteps.map((step, index) => (
             <motion.article
-              key={step.title}
+              key={index}
               initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.45, delay: index * 0.08, ease: easeOut }}
               className="section-surface flex gap-4 rounded-2xl p-5 sm:p-6"
             >
@@ -61,7 +60,7 @@ export function ContactPageContent() {
         </div>
       </ContentSection>
 
-      <section className={`relative isolate overflow-hidden border-t border-ink/6 bg-white ${sectionPaddingY}`}>
+      <section id="office-info" className={`relative isolate overflow-hidden border-t border-ink/6 bg-white ${sectionPaddingY}`}>
         <div className="mx-auto w-full max-w-[1360px] px-4 sm:px-5 lg:px-6">
           <InlineSectionHeader
             eyebrow={office.eyebrow}
@@ -69,13 +68,12 @@ export function ContactPageContent() {
             description={office.description}
           />
 
-          <div className={cn("grid gap-4 sm:grid-cols-2 lg:grid-cols-4", sectionHeaderGap)}>
+          <div key={locale} className={cn("grid gap-4 sm:grid-cols-2 lg:grid-cols-4", sectionHeaderGap)}>
             {officeItems.map((item, index) => (
               <motion.div
-                key={item.label}
+                key={index}
                 initial={{ opacity: 0, y: 14 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-30px" }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: index * 0.06, ease: easeOut }}
                 className="section-surface rounded-2xl p-5 text-center"
               >
@@ -101,9 +99,9 @@ export function ContactPageContent() {
         overlay="soft"
       >
         <div className="mx-auto grid max-w-3xl gap-4 sm:grid-cols-2">
-          {page.prepTipsItems.map((tip) => (
+          {page.prepTipsItems.map((tip, index) => (
             <article
-              key={tip.title}
+              key={index}
               className="section-surface rounded-2xl p-5"
             >
               <h3 className="text-sm font-semibold text-ink">{tip.title}</h3>

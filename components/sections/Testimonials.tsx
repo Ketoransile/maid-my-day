@@ -16,7 +16,6 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { easeOut } from "@/lib/motion";
 import { sectionHeaderGap } from "@/lib/section-spacing";
 import { images } from "@/lib/images";
 
@@ -74,7 +73,7 @@ function TestimonialCard({
 }
 
 export function Testimonials() {
-  const { t } = useLanguage();
+  const { locale, t } = useLanguage();
 
   return (
     <section id="testimonials" className={`${sectionShellClass} py-16 sm:py-24 lg:py-32`}>
@@ -92,10 +91,9 @@ export function Testimonials() {
         />
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.55, ease: easeOut }}
+          key={locale}
+          initial={{ opacity: 1, y: 0 }}
+          animate={{ opacity: 1, y: 0 }}
           className={sectionHeaderGap}
         >
           <Carousel

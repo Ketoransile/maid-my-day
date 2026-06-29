@@ -57,7 +57,7 @@ export function FaqPageContent() {
         </div>
       </ContentSection>
 
-      <section className={`relative isolate overflow-hidden border-t border-ink/6 bg-white ${sectionPaddingY}`}>
+      <section id="still-wondering" className={`relative isolate overflow-hidden border-t border-ink/6 bg-white ${sectionPaddingY}`}>
         <div className="mx-auto w-full max-w-[1360px] px-4 sm:px-5 lg:px-6">
           <div className="section-surface mx-auto max-w-3xl rounded-2xl p-8 sm:p-10">
             <h2 className="text-center text-[1.25rem] font-semibold text-ink sm:text-[1.5rem]">

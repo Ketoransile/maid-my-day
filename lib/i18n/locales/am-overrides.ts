@@ -1,4 +1,5 @@
 import type { DeepPartial, Translations } from "../types";
+import { navSubmenusAm } from "../nav-submenus";
 import { servicesPageAm } from "./pages/services-page-am";
 import { howItWorksPageAm } from "./pages/how-it-works-page-am";
 import { whyUsPageAm } from "./pages/why-us-page-am";
@@ -18,11 +19,7 @@ export const amOverrides: DeepPartial<Translations> = {
     openMenu: "ምናሌ ክፈት",
     allLinks: "ሁሉም አገናኞች",
     language: "ቋንቋ",
-    submenu: {
-      overview: "አጠቃላይ እይታ",
-      getStarted: "ይጀምሩ",
-      learnMore: "ተጨማሪ ይወቁ",
-    },
+    submenu: navSubmenusAm,
     extended: {
       about: "ስለ Maid My Day",
       careers: "ሙያዎች",

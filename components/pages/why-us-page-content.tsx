@@ -10,7 +10,7 @@ import { easeOut } from "@/lib/motion";
 import { sectionPaddingY } from "@/lib/section-spacing";
 
 export function WhyUsPageContent() {
-  const { t } = useLanguage();
+  const { locale, t } = useLanguage();
   const page = t.whyUsPage;
 
   return (
@@ -26,10 +26,9 @@ export function WhyUsPageContent() {
         <div className="grid gap-5 sm:grid-cols-2">
           {page.whoWeServeItems.map((client, index) => (
             <motion.article
-              key={client.title}
+              key={index}
               initial={{ opacity: 0, y: 14 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.45, delay: index * 0.07, ease: easeOut }}
               className="section-surface rounded-2xl p-6"
             >
@@ -53,13 +52,12 @@ export function WhyUsPageContent() {
         overlay="alt"
         align="left"
       >
-        <div className="mx-auto max-w-3xl space-y-3">
+        <div key={locale} className="mx-auto max-w-3xl space-y-3">
           {page.standardsItems.map((standard, index) => (
             <motion.div
-              key={standard.title}
+              key={index}
               initial={{ opacity: 0, x: -12 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-30px" }}
+              animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.4, delay: index * 0.05, ease: easeOut }}
               className="section-surface flex gap-3.5 rounded-xl p-4 sm:p-5"
             >

@@ -59,7 +59,7 @@ export function HowItWorksPageContent() {
         </div>
       </ContentSection>
 
-      <section className={`relative isolate overflow-hidden border-t border-ink/6 bg-white ${sectionPaddingY}`}>
+      <section id="first-30-days" className={`relative isolate overflow-hidden border-t border-ink/6 bg-white ${sectionPaddingY}`}>
         <div className="mx-auto w-full max-w-[1360px] px-4 sm:px-5 lg:px-6">
           <InlineSectionHeader
             eyebrow={page.first30Days.eyebrow}
@@ -67,13 +67,12 @@ export function HowItWorksPageContent() {
             description={page.first30Days.description}
           />
 
-          <div className={cn("grid gap-5 md:grid-cols-3", sectionHeaderGap)}>
+          <div key={locale} className={cn("grid gap-5 md:grid-cols-3", sectionHeaderGap)}>
             {page.first30Days.phases.map((phase, index) => (
               <motion.div
-                key={`${locale}-${index}`}
+                key={index}
                 initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-40px" }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.45, delay: index * 0.08, ease: easeOut }}
               >
                 <Card className="section-surface h-full border-0 shadow-none">
@@ -116,10 +115,10 @@ export function HowItWorksPageContent() {
         image={images.backgrounds.contact}
         overlay="soft"
       >
-        <div className="mx-auto grid max-w-2xl gap-3">
+        <div key={locale} className="mx-auto grid max-w-2xl gap-3">
           {page.preparationChecklist.map((item, index) => (
             <motion.div
-              key={item}
+              key={index}
               initial={{ opacity: 0, x: -12 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.4, delay: index * 0.05, ease: easeOut }}

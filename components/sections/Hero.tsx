@@ -14,7 +14,7 @@ import { easeOut } from "@/lib/motion";
 
 export function Hero() {
   const reduceMotion = useReducedMotion();
-  const { t } = useLanguage();
+  const { locale, t } = useLanguage();
 
   return (
     <section
@@ -33,9 +33,9 @@ export function Hero() {
           <Reveal
             as="p"
             animateOnMount
+            replayKey={locale}
             delay={0.05}
             className="hero-eyebrow text-sm font-medium tracking-wide text-primary"
-            key={t.hero.eyebrow}
           >
             {t.hero.eyebrow}
           </Reveal>
@@ -43,24 +43,25 @@ export function Hero() {
           <RevealWords
             as="h1"
             animateOnMount
+            replayKey={locale}
             delay={0.12}
             className="hero-title mt-3 text-[2rem] font-semibold leading-[1.1] tracking-[-0.025em] text-ink sm:mt-4 sm:text-[2.5rem] lg:text-[3.25rem] lg:leading-[1.08]"
             text={t.hero.title}
-            key={t.hero.title}
           />
 
           <Reveal
             as="p"
             animateOnMount
+            replayKey={locale}
             delay={0.28}
             className="hero-lead mt-4 max-w-lg text-base leading-relaxed text-ink/85 sm:mt-5 sm:text-lg"
-            key={t.hero.lead}
           >
             {t.hero.lead}
           </Reveal>
 
           <Reveal
             animateOnMount
+            replayKey={locale}
             delay={0.4}
             className="mt-8 flex flex-col gap-3 sm:mt-9 sm:flex-row sm:flex-wrap"
           >
