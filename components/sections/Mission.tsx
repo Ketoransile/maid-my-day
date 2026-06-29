@@ -8,60 +8,22 @@ import { SiteContainer } from "@/components/layout/site-container";
 import { SectionBackground, sectionContentClass, sectionShellClass } from "@/components/section-background";
 import { SectionHeader } from "@/components/section-header";
 import { Reveal } from "@/components/motion/reveal-text";
+import { useLanguage } from "@/components/providers/language-provider";
 import { easeOut } from "@/lib/motion";
-import { images } from "@/lib/images";
+import { sectionHeaderGap } from "@/lib/section-spacing";
 import { cn } from "@/lib/utils";
+import { images } from "@/lib/images";
+import { serviceImageMap } from "@/lib/i18n/service-images";
 
-const serviceOrbits = [
-  {
-    label: "Housing",
-    src: images.services.housing,
-    alt: "Housing and relocation support",
-    className: "left-[2%] top-[10%] sm:left-[0%] sm:top-[8%]",
-  },
-  {
-    label: "Housemaids",
-    src: images.services.housemaid,
-    alt: "Trained housemaids",
-    className: "right-[2%] top-[14%] sm:right-[0%] sm:top-[12%]",
-  },
-  {
-    label: "Drivers",
-    src: images.services.driver,
-    alt: "Professional drivers",
-    className: "left-[4%] bottom-[4%] sm:left-[2%] sm:bottom-[2%]",
-  },
-  {
-    label: "Pet Care",
-    src: images.services.petCare,
-    alt: "Pet care services",
-    className: "right-[4%] bottom-[2%] sm:right-[2%] sm:bottom-[0%]",
-  },
-  {
-    label: "Home Mgmt",
-    src: images.services.homeManagement,
-    alt: "Home management services",
-    className: "left-1/2 -top-5 -translate-x-1/2 sm:-top-7",
-  },
+const orbitPositions = [
+  "left-[2%] top-[10%] sm:left-[0%] sm:top-[8%]",
+  "right-[2%] top-[14%] sm:right-[0%] sm:top-[12%]",
+  "left-[4%] bottom-[4%] sm:left-[2%] sm:bottom-[2%]",
+  "right-[4%] bottom-[2%] sm:right-[2%] sm:bottom-[0%]",
+  "left-1/2 -top-5 -translate-x-1/2 sm:-top-7",
 ] as const;
 
-const missionPillars = [
-  {
-    icon: Home,
-    title: "Find your home",
-    detail: "Relocation support to help you settle into the right neighborhood and property.",
-  },
-  {
-    icon: UsersRound,
-    title: "Hire trusted staff",
-    detail: "Carefully vetted housemaids, drivers, and household help you can rely on.",
-  },
-  {
-    icon: CalendarDays,
-    title: "Stay organized",
-    detail: "Day-to-day home management so your routine runs smoothly in Addis Ababa.",
-  },
-] as const;
+const pillarIcons = [Home, UsersRound, CalendarDays] as const;
 
 const pillarContainer = {
   hidden: { opacity: 0 },
@@ -125,6 +87,9 @@ function ServiceOrbit({
 }
 
 export function Mission() {
+  const { locale, t } = useLanguage();
+  const { mission } = t;
+
   return (
     <section id="mission" className={`${sectionShellClass} py-16 sm:py-20 lg:py-28`}>
       <SectionBackground
@@ -137,9 +102,9 @@ export function Mission() {
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-14">
           <div className="order-1 lg:order-2">
             <SectionHeader
-              eyebrow="Our Mission"
-              title="Making life in Addis Ababa easier for expat families"
-              description="To make living in Addis Ababa easier, cleaner, and more comfortable through trusted home and relocation support."
+              eyebrow={mission.eyebrow}
+              title={mission.title}
+              description={mission.description}
               align="left"
             />
 
@@ -148,39 +113,36 @@ export function Mission() {
               className="mt-5 max-w-xl text-[0.9375rem] leading-relaxed text-ink/65 sm:mt-6 sm:text-base"
               delay={0.32}
             >
-              Maid My Day exists to take the stress out of settling in. We
-              support expats, diplomats, embassy staff, and international
-              professionals at every step.
+              {mission.body}
             </Reveal>
 
             <motion.ul
+              key={locale}
               variants={pillarContainer}
               initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-60px" }}
-              className="mt-8 space-y-3 sm:mt-10"
+              animate="visible"
+              className={cn("space-y-3", sectionHeaderGap)}
             >
-              {missionPillars.map((pillar) => (
-                <motion.li
-                  key={pillar.title}
-                  variants={pillarItem}
-                  className="section-surface flex gap-3.5 rounded-xl p-4"
-                >
-                  <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary/10">
-                    <pillar.icon
-                      size={14}
-                      className="text-primary"
-                      strokeWidth={2}
-                    />
-                  </span>
-                  <div>
-                    <p className="font-medium text-ink">{pillar.title}</p>
-                    <p className="mt-1.5 text-sm leading-relaxed text-ink/65">
-                      {pillar.detail}
-                    </p>
-                  </div>
-                </motion.li>
-              ))}
+              {mission.pillars.map((pillar, index) => {
+                const Icon = pillarIcons[index] ?? Home;
+                return (
+                  <motion.li
+                    key={index}
+                    variants={pillarItem}
+                    className="section-surface flex gap-3.5 rounded-xl p-4"
+                  >
+                    <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary/10">
+                      <Icon size={14} className="text-primary" strokeWidth={2} />
+                    </span>
+                    <div>
+                      <p className="font-medium text-ink">{pillar.title}</p>
+                      <p className="mt-1.5 text-sm leading-relaxed text-ink/65">
+                        {pillar.detail}
+                      </p>
+                    </div>
+                  </motion.li>
+                );
+              })}
             </motion.ul>
           </div>
 
@@ -192,13 +154,13 @@ export function Mission() {
             className="order-2 lg:order-1"
           >
             <div className="relative mx-auto h-[360px] w-full max-w-[400px] overflow-visible pt-8 sm:h-[420px] sm:max-w-[440px] lg:mx-0">
-              {serviceOrbits.map((service, index) => (
+              {mission.serviceOrbits.map((service, index) => (
                 <ServiceOrbit
-                  key={service.label}
+                  key={service.id}
                   label={service.label}
-                  src={service.src}
+                  src={serviceImageMap[service.id as keyof typeof serviceImageMap]}
                   alt={service.alt}
-                  className={service.className}
+                  className={orbitPositions[index] ?? orbitPositions[0]}
                   delay={0.1 + index * 0.07}
                 />
               ))}
@@ -213,7 +175,7 @@ export function Mission() {
                 <div className="image-frame relative aspect-[4/5] overflow-hidden rounded-2xl border-[3px] border-white shadow-[0_12px_40px_rgba(28,28,28,0.1)]">
                   <FillImage
                     src={images.mission.main}
-                    alt="Comfortable home in Addis Ababa"
+                    alt={mission.mainImageAlt}
                     sizes="(max-width: 1024px) 60vw, 240px"
                   />
                 </div>

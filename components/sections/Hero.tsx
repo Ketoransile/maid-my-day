@@ -1,17 +1,20 @@
 "use client";
 
+import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 
 import { HeroVideoBackground } from "@/components/hero-video-background";
 import { SiteContainer } from "@/components/layout/site-container";
 import { Reveal, RevealWords } from "@/components/motion/reveal-text";
+import { useLanguage } from "@/components/providers/language-provider";
 import { scrollToSection } from "@/lib/smooth-scroll";
 import { Button } from "@/components/ui/button";
 import { easeOut } from "@/lib/motion";
 
 export function Hero() {
   const reduceMotion = useReducedMotion();
+  const { t } = useLanguage();
 
   return (
     <section
@@ -32,8 +35,9 @@ export function Hero() {
             animateOnMount
             delay={0.05}
             className="hero-eyebrow text-sm font-medium tracking-wide text-primary"
+            key={t.hero.eyebrow}
           >
-            Maid My Day Home & Relocation
+            {t.hero.eyebrow}
           </Reveal>
 
           <RevealWords
@@ -41,7 +45,8 @@ export function Hero() {
             animateOnMount
             delay={0.12}
             className="hero-title mt-3 text-[2rem] font-semibold leading-[1.1] tracking-[-0.025em] text-ink sm:mt-4 sm:text-[2.5rem] lg:text-[3.25rem] lg:leading-[1.08]"
-            text="Settle into Addis Ababa Without the Stress"
+            text={t.hero.title}
+            key={t.hero.title}
           />
 
           <Reveal
@@ -49,9 +54,9 @@ export function Hero() {
             animateOnMount
             delay={0.28}
             className="hero-lead mt-4 max-w-lg text-base leading-relaxed text-ink/85 sm:mt-5 sm:text-lg"
+            key={t.hero.lead}
           >
-            Trusted housemaids, drivers, pet care, and relocation services for
-            expats and international professionals.
+            {t.hero.lead}
           </Reveal>
 
           <Reveal
@@ -62,17 +67,17 @@ export function Hero() {
             <Button
               size="lg"
               className="h-12 w-full cursor-pointer px-7 text-[15px] shadow-[0_4px_20px_rgba(43,95,75,0.25)] sm:w-auto"
-              onClick={() => scrollToSection("contact")}
+              asChild
             >
-              Contact Us
+              <Link href="/contact">{t.hero.contactUs}</Link>
             </Button>
             <Button
               size="lg"
               variant="ghost"
               className="hero-btn-ghost h-12 w-full border px-7 text-[15px] shadow-none backdrop-blur-md sm:w-auto"
-              onClick={() => scrollToSection("services")}
+              asChild
             >
-              Our Services
+              <Link href="/services">{t.hero.ourServices}</Link>
             </Button>
           </Reveal>
         </motion.div>
@@ -80,7 +85,7 @@ export function Hero() {
 
       <button
         type="button"
-        aria-label="Scroll to next section"
+        aria-label={t.hero.scrollHint}
         onClick={() => scrollToSection("trust-bar")}
         className="relative z-10 mx-auto mb-5 flex text-ink/40 transition-colors hover:text-ink/65 sm:mb-6"
       >

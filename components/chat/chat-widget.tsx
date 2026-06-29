@@ -4,11 +4,8 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { MessageCircle, Send, Sparkles, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import {
-  CHAT_QUICK_PROMPTS,
-  CHAT_WELCOME,
-  type ChatAction,
-} from "@/lib/chat-knowledge";
+import { useLanguage } from "@/components/providers/language-provider";
+import type { ChatAction } from "@/lib/chat-knowledge";
 import { scrollToSection } from "@/lib/smooth-scroll";
 import { cn } from "@/lib/utils";
 
@@ -26,6 +23,10 @@ function createId() {
 }
 
 export function ChatWidget() {
+  const { locale, t } = useLanguage();
+  const { chat } = t;
+  const { ui } = chat;
+
   const [open, setOpen] = useState(false);
   const [input, setInput] = useState("");
   const [isTyping, setIsTyping] = useState(false);
@@ -46,12 +47,21 @@ export function ChatWidget() {
         {
           id: createId(),
           role: "assistant",
-          content: CHAT_WELCOME,
+          content: chat.welcome,
         },
       ]);
       setHasWelcomed(true);
     }
-  }, [open, hasWelcomed]);
+  }, [open, hasWelcomed, chat.welcome]);
+
+  useEffect(() => {
+    setMessages((prev) => {
+      if (prev.length === 1 && prev[0]?.role === "assistant" && !isTyping) {
+        return [{ ...prev[0], content: chat.welcome }];
+      }
+      return prev;
+    });
+  }, [locale, chat.welcome, isTyping]);
 
   useEffect(() => {
     if (open) {
@@ -93,7 +103,7 @@ export function ChatWidget() {
       const response = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: trimmed }),
+        body: JSON.stringify({ message: trimmed, locale }),
       });
 
       const data = await response.json();
@@ -116,9 +126,14 @@ export function ChatWidget() {
         {
           id: createId(),
           role: "assistant",
-          content:
-            "Sorry, I couldn't reach the server. Please try again or use the contact form.",
-          actions: [{ type: "scroll", target: "contact", label: "Contact us" }],
+          content: chat.fallback,
+          actions: [
+            {
+              type: "scroll",
+              target: "contact",
+              label: t.common.cta.contactUs,
+            },
+          ],
         },
       ]);
     } finally {
@@ -145,7 +160,7 @@ export function ChatWidget() {
             id="chat-panel"
             role="dialog"
             aria-modal="true"
-            aria-label="Maid My Day chat assistant"
+            aria-label={ui.panelAriaLabel}
             className={cn(
               "section-surface flex w-[min(100vw-2rem,24rem)] flex-col overflow-hidden rounded-2xl",
               "h-[min(70dvh,32rem)] shadow-[0_16px_48px_rgba(28,28,28,0.14)]",
@@ -157,8 +172,8 @@ export function ChatWidget() {
                   <Sparkles size={16} strokeWidth={1.75} />
                 </span>
                 <div>
-                  <p className="text-sm font-semibold text-ink">Maid My Day</p>
-                  <p className="text-xs text-ink/55">Ask about our services</p>
+                  <p className="text-sm font-semibold text-ink">{t.common.brandName}</p>
+                  <p className="text-xs text-ink/55">{ui.subtitle}</p>
                 </div>
               </div>
               <Button
@@ -167,7 +182,7 @@ export function ChatWidget() {
                 size="icon"
                 className="h-8 w-8 shrink-0 text-ink/60 hover:bg-ink/5"
                 onClick={() => setOpen(false)}
-                aria-label="Close chat"
+                aria-label={ui.closeLabel}
               >
                 <X size={16} strokeWidth={1.75} />
               </Button>
@@ -214,7 +229,7 @@ export function ChatWidget() {
               ))}
 
               {isTyping && (
-                <div className="flex justify-start" aria-label="Assistant is typing">
+                <div className="flex justify-start" aria-label={ui.typingLabel}>
                   <div className="rounded-2xl rounded-bl-md bg-white/90 px-3.5 py-3 shadow-sm ring-1 ring-ink/6">
                     <span className="flex gap-1">
                       <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-ink/35 [animation-delay:0ms]" />
@@ -231,10 +246,10 @@ export function ChatWidget() {
             {showQuickPrompts && (
               <div className="border-t border-ink/6 px-4 py-3">
                 <p className="mb-2 text-[11px] font-medium uppercase tracking-wide text-ink/45">
-                  Quick questions
+                  {ui.quickQuestionsLabel}
                 </p>
                 <div className="flex flex-wrap gap-2">
-                  {CHAT_QUICK_PROMPTS.map((prompt) => (
+                  {chat.quickPrompts.map((prompt) => (
                     <button
                       key={prompt}
                       type="button"
@@ -257,7 +272,7 @@ export function ChatWidget() {
             >
               <div className="flex items-center gap-2">
                 <label htmlFor="chat-input" className="sr-only">
-                  Type your message
+                  {ui.inputLabel}
                 </label>
                 <input
                   ref={inputRef}
@@ -265,7 +280,7 @@ export function ChatWidget() {
                   type="text"
                   value={input}
                   onChange={(event) => setInput(event.target.value)}
-                  placeholder="Ask a question..."
+                  placeholder={ui.inputPlaceholder}
                   maxLength={500}
                   disabled={isTyping}
                   className="h-10 flex-1 rounded-xl border border-ink/10 bg-white px-3 text-sm text-ink outline-none transition-colors placeholder:text-ink/40 focus:border-primary/35 focus:ring-2 focus:ring-primary/15"
@@ -275,7 +290,7 @@ export function ChatWidget() {
                   size="icon"
                   disabled={!input.trim() || isTyping}
                   className="h-10 w-10 shrink-0 rounded-xl"
-                  aria-label="Send message"
+                  aria-label={ui.sendLabel}
                 >
                   <Send size={16} strokeWidth={1.75} />
                 </Button>
@@ -294,7 +309,7 @@ export function ChatWidget() {
           )}
           aria-expanded={open}
           aria-controls="chat-panel"
-          aria-label={open ? "Close chat assistant" : "Open chat assistant"}
+          aria-label={open ? ui.closeLabel : ui.openLabel}
         >
           {open ? (
             <X size={22} strokeWidth={1.75} />

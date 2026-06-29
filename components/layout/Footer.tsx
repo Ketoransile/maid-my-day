@@ -1,26 +1,30 @@
 "use client";
 
+import Link from "next/link";
 import { Gem, Mail, MapPin, Phone } from "lucide-react";
 
 import { Separator } from "@/components/ui/separator";
 import { SiteContainer } from "@/components/layout/site-container";
 import { SocialIcon } from "@/components/social/social-icons";
-import { scrollToSection } from "@/lib/smooth-scroll";
+import { useLanguage } from "@/components/providers/language-provider";
+import { homeNavHref } from "@/lib/navigation";
 import { getSocialLinks } from "@/lib/social-links";
-
-const quickLinks = [
-  { label: "Home", id: "hero" },
-  { label: "Services", id: "services" },
-  { label: "How It Works", id: "how-it-works" },
-  { label: "Why Us", id: "why-us" },
-  { label: "FAQ", id: "faq" },
-  { label: "Contact", id: "contact" },
-];
 
 const socialLinks = getSocialLinks();
 
+const quickLinkKeys = [
+  { key: "home" as const, href: homeNavHref },
+  { key: "services" as const, href: "/services" },
+  { key: "howItWorks" as const, href: "/how-it-works" },
+  { key: "whyUs" as const, href: "/why-us" },
+  { key: "faq" as const, href: "/faq" },
+  { key: "contact" as const, href: "/contact" },
+];
+
 export function Footer() {
+  const { t } = useLanguage();
   const year = new Date().getFullYear();
+  const copyright = t.common.copyright.replace("{year}", String(year));
 
   return (
     <footer className="border-t border-ink/[0.08] bg-white">
@@ -30,16 +34,12 @@ export function Footer() {
             <div className="flex items-center gap-2">
               <Gem size={18} className="text-primary" strokeWidth={1.5} />
               <span className="text-base font-semibold text-ink">
-                Maid My Day
+                {t.common.brandName}
               </span>
             </div>
-            <p className="mt-3 text-sm text-ink/60">
-              Maid My Day Home & Relocation
-            </p>
-            <p className="mt-1 text-sm text-ink/60">
-              Premium home and relocation services in Addis Ababa
-            </p>
-            <p className="mt-1 text-sm text-ink/60">Addis Ababa, Ethiopia</p>
+            <p className="mt-3 text-sm text-ink/60">{t.footer.tagline}</p>
+            <p className="mt-1 text-sm text-ink/60">{t.footer.subtitle}</p>
+            <p className="mt-1 text-sm text-ink/60">{t.common.location}</p>
 
             <div className="mt-6 flex items-center gap-2">
               {socialLinks.map((social) => (
@@ -63,18 +63,17 @@ export function Footer() {
 
           <div>
             <h3 className="text-xs font-medium uppercase tracking-[0.1em] text-ink/45">
-              Quick Links
+              {t.footer.quickLinksHeading}
             </h3>
             <ul className="mt-4 space-y-2">
-              {quickLinks.map((link) => (
-                <li key={link.id}>
-                  <button
-                    type="button"
-                    onClick={() => scrollToSection(link.id)}
+              {quickLinkKeys.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
                     className="cursor-pointer text-sm text-ink/65 transition-colors hover:text-primary"
                   >
-                    {link.label}
-                  </button>
+                    {t.nav[link.key]}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -82,20 +81,20 @@ export function Footer() {
 
           <div>
             <h3 className="text-xs font-medium uppercase tracking-[0.1em] text-ink/45">
-              Contact Us
+              {t.footer.contactHeading}
             </h3>
             <ul className="mt-4 space-y-3">
               <li className="flex items-center gap-2 text-sm text-ink/65">
                 <Phone size={14} className="text-primary" strokeWidth={1.5} />
-                +251 911 000 000
+                {t.common.phone}
               </li>
               <li className="flex items-center gap-2 text-sm text-ink/65">
                 <Mail size={14} className="text-primary" strokeWidth={1.5} />
-                hello@maidmyday.com
+                {t.common.email}
               </li>
               <li className="flex items-center gap-2 text-sm text-ink/65">
                 <MapPin size={14} className="text-primary" strokeWidth={1.5} />
-                Addis Ababa, Ethiopia
+                {t.common.location}
               </li>
             </ul>
           </div>
@@ -103,9 +102,7 @@ export function Footer() {
 
         <Separator className="my-8 bg-ink/[0.06]" />
 
-        <p className="text-center text-[13px] text-ink/45">
-          © {year} Maid My Day Home & Relocation. All rights reserved.
-        </p>
+        <p className="text-center text-[13px] text-ink/45">{copyright}</p>
       </SiteContainer>
     </footer>
   );

@@ -1,10 +1,9 @@
 import {
-  CHAT_FALLBACK,
   type ChatAction,
   type KnowledgeEntry,
   chatKnowledge,
-  siteFaqs,
 } from "@/lib/chat-knowledge";
+import { defaultLocale, getTranslations, type Locale } from "@/lib/i18n";
 
 export type ChatReply = {
   message: string;
@@ -211,19 +210,20 @@ function scoreEntry(message: string, entry: KnowledgeEntry) {
   return score;
 }
 
-function buildContextualFallback(message: string): ChatReply {
+function buildContextualFallback(message: string, locale: Locale = defaultLocale): ChatReply {
+  const t = getTranslations(locale);
   const tokens = expandTokens(tokenize(message));
   const normalized = normalize(message);
 
   const areaHints = ["bole", "kazanchis", "cmc", "sarbet", "addis", "ethiopia", "airport"];
   if (areaHints.some((hint) => tokens.has(hint) || normalized.includes(hint))) {
-    const areaFaq = siteFaqs.find((faq) =>
+    const areaFaq = t.faq.items.find((faq) =>
       faq.question.toLowerCase().includes("areas"),
     );
     if (areaFaq) {
       return {
         message: areaFaq.answer,
-        actions: [{ type: "scroll", target: "contact", label: "Contact us" }],
+        actions: [{ type: "scroll", target: "contact", label: t.common.cta.contactUs }],
       };
     }
   }
@@ -235,19 +235,44 @@ function buildContextualFallback(message: string): ChatReply {
     normalized.includes("unique")
   ) {
     return {
-      message:
-        "Every household is different. Tell us your schedule, location, and what you need in the contact form — we'll recommend a tailored setup and reply within 24 hours.",
-      actions: [{ type: "scroll", target: "contact", label: "Share your needs" }],
+      message: t.chat.fallback,
+      actions: [{ type: "scroll", target: "contact", label: t.common.cta.contactUs }],
     };
   }
 
   return {
-    message: CHAT_FALLBACK,
+    message: t.chat.fallback,
     actions: [
-      { type: "scroll", target: "faq", label: "Browse FAQ" },
-      { type: "scroll", target: "contact", label: "Contact us" },
+      { type: "scroll", target: "faq", label: t.common.cta.readFaqs },
+      { type: "scroll", target: "contact", label: t.common.cta.contactUs },
     ],
   };
+}
+
+function localizedAnswer(entry: KnowledgeEntry, locale: Locale): string {
+  const t = getTranslations(locale);
+  const localized = t.chat.knowledge.find((k) => k.id === entry.id);
+  return localized?.answer ?? entry.answer;
+}
+
+function localizedActions(
+  actions: ChatAction[] | undefined,
+  locale: Locale,
+): ChatAction[] | undefined {
+  if (!actions?.length) return actions;
+  const t = getTranslations(locale);
+  return actions.map((action) => {
+    if (action.type !== "scroll") return action;
+    const label =
+      action.target === "contact"
+        ? t.common.cta.contactUs
+        : action.target === "faq"
+          ? t.common.cta.readFaqs
+          : action.target === "services"
+            ? t.common.cta.ourServices
+            : action.label;
+    return { ...action, label };
+  });
 }
 
 function dedupeActions(actions: ChatAction[]) {
@@ -260,10 +285,11 @@ function dedupeActions(actions: ChatAction[]) {
   });
 }
 
-export function getChatReply(message: string): ChatReply {
+export function getChatReply(message: string, locale: Locale = defaultLocale): ChatReply {
+  const t = getTranslations(locale);
   const trimmed = message.trim();
   if (!trimmed) {
-    return { message: "Please type a question and I'll do my best to help." };
+    return { message: t.chat.welcome };
   }
 
   const ranked = chatKnowledge
@@ -274,22 +300,22 @@ export function getChatReply(message: string): ChatReply {
   const second = ranked[1];
 
   if (!top || top.score < 2) {
-    return buildContextualFallback(trimmed);
+    return buildContextualFallback(trimmed, locale);
   }
 
   if (second && second.score >= 4 && second.score >= top.score * 0.65) {
     return {
-      message: `${top.entry.answer}\n\n${second.entry.answer}`,
+      message: `${localizedAnswer(top.entry, locale)}\n\n${localizedAnswer(second.entry, locale)}`,
       actions: dedupeActions([
-        ...(top.entry.actions ?? []),
-        ...(second.entry.actions ?? []),
-        { type: "scroll", target: "contact", label: "Contact us" },
+        ...(localizedActions(top.entry.actions, locale) ?? []),
+        ...(localizedActions(second.entry.actions, locale) ?? []),
+        { type: "scroll", target: "contact", label: t.common.cta.contactUs },
       ]).slice(0, 3),
     };
   }
 
   return {
-    message: top.entry.answer,
-    actions: top.entry.actions,
+    message: localizedAnswer(top.entry, locale),
+    actions: localizedActions(top.entry.actions, locale),
   };
 }

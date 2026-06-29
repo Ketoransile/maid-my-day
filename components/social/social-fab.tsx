@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { UsersRound, X } from "lucide-react";
 
+import { useLanguage } from "@/components/providers/language-provider";
 import { SocialIcon } from "@/components/social/social-icons";
 import { Button } from "@/components/ui/button";
 import { getSocialLinks } from "@/lib/social-links";
@@ -23,6 +24,7 @@ const itemVariants = {
 };
 
 export function SocialFab() {
+  const { t } = useLanguage();
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
 
@@ -64,10 +66,8 @@ export function SocialFab() {
           )}
           aria-expanded={open}
           aria-controls="social-links-menu"
-          aria-label={
-            open ? "Close social media menu" : "Follow us on social media"
-          }
-          title={open ? undefined : "Follow us"}
+          aria-label={open ? t.social.closeLabel : t.social.openLabel}
+          title={open ? undefined : t.social.followTitle}
         >
           {open ? (
             <X size={22} strokeWidth={1.75} />
@@ -81,7 +81,7 @@ export function SocialFab() {
             <motion.div
               id="social-links-menu"
               role="menu"
-              aria-label="Social media links"
+              aria-label={t.social.menuAriaLabel}
               className="flex flex-col-reverse items-center gap-2.5"
               initial="hidden"
               animate="visible"

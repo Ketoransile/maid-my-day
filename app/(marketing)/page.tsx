@@ -7,17 +7,27 @@ import { Testimonials } from "@/components/sections/Testimonials";
 import { Mission } from "@/components/sections/Mission";
 import { FAQ } from "@/components/sections/FAQ";
 import { Contact } from "@/components/sections/Contact";
+import {
+  HomeExpectationsSection,
+  HomeIntroSection,
+  HomeNeighborhoodsSection,
+  HomePackagesSection,
+} from "@/components/pages/home-page-content";
 
 export default function HomePage() {
   return (
     <>
       <Hero />
       <TrustBar />
+      <HomeIntroSection />
       <Services />
+      <HomePackagesSection />
       <HowItWorks />
       <WhyUs />
+      <HomeExpectationsSection />
       <Testimonials />
       <Mission />
+      <HomeNeighborhoodsSection />
       <FAQ />
       <Contact />
     </>

@@ -11,9 +11,11 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { useLanguage } from "@/components/providers/language-provider";
 import { staggerItem } from "@/lib/motion";
-import { siteFaqs } from "@/lib/chat-knowledge";
 import { images } from "@/lib/images";
+import { sectionHeaderGap } from "@/lib/section-spacing";
+import { cn } from "@/lib/utils";
 
 const list = {
   hidden: {},
@@ -21,6 +23,8 @@ const list = {
 };
 
 export function FAQ() {
+  const { locale, t } = useLanguage();
+
   return (
     <section id="faq" className={`${sectionShellClass} py-16 sm:py-24 lg:py-32`}>
       <SectionBackground
@@ -31,21 +35,21 @@ export function FAQ() {
       />
       <SiteContainer className={sectionContentClass}>
         <SectionHeader
-          eyebrow="Common Questions"
-          title="Frequently Asked Questions"
-          description="Plain answers about how we work. No jargon."
+          eyebrow={t.faq.eyebrow}
+          title={t.faq.title}
+          description={t.faq.description}
         />
 
         <motion.div
+          key={locale}
           variants={list}
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-60px" }}
+          animate="visible"
         >
-          <Accordion type="single" collapsible className="mt-12 flex flex-col gap-4">
-            {siteFaqs.map((faq, index) => (
+          <Accordion type="single" collapsible className={cn(sectionHeaderGap, "flex flex-col gap-4")}>
+            {t.faq.items.map((faq, index) => (
               <motion.div
-                key={faq.question}
+                key={index}
                 variants={staggerItem}
                 className="faq-item overflow-hidden rounded-2xl"
               >

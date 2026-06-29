@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Navbar } from "@/components/layout/Navbar";
 import { ChatWidget } from "@/components/chat/chat-widget";
 import { SocialFab } from "@/components/social/social-fab";
+import { LanguageProvider } from "@/components/providers/language-provider";
 import { LenisProvider } from "@/components/providers/lenis-provider";
 import { Toaster } from "@/components/ui/sonner";
 
@@ -41,13 +42,15 @@ export default function RootLayout({
         />
       </head>
       <body className="overflow-x-clip font-sans antialiased">
-        <LenisProvider>
-          <Navbar />
-          {children}
-          <SocialFab />
-          <ChatWidget />
-          <Toaster />
-        </LenisProvider>
+        <LanguageProvider>
+          <LenisProvider>
+            <Navbar />
+            {children}
+            <SocialFab />
+            <ChatWidget />
+            <Toaster />
+          </LenisProvider>
+        </LanguageProvider>
       </body>
     </html>
   );

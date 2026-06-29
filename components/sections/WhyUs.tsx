@@ -9,36 +9,10 @@ import { SectionBackground, sectionContentClass, sectionShellClass } from "@/com
 import { FillImage } from "@/components/fill-image";
 import { images } from "@/lib/images";
 import { easeOut } from "@/lib/motion";
+import { sectionHeaderGap } from "@/lib/section-spacing";
+import { cn } from "@/lib/utils";
 import { useCountUp } from "@/hooks/use-count-up";
-import type { TrustPoint } from "@/types";
-
-const trustPoints: TrustPoint[] = [
-  {
-    title: "Carefully Selected Staff",
-    detail:
-      "Every housemaid, driver, and helper is vetted and interviewed before placement.",
-  },
-  {
-    title: "Professional Standards",
-    detail:
-      "Consistent training and clear expectations for every member of your household team.",
-  },
-  {
-    title: "Reliable and Trustworthy Service",
-    detail:
-      "Dependable support you can count on week after week.",
-  },
-  {
-    title: "Expat-Focused Support",
-    detail:
-      "Built for diplomats, embassy staff, and international professionals new to Addis Ababa.",
-  },
-  {
-    title: "Personalized Assistance",
-    detail:
-      "Services tailored to your home, schedule, and family needs.",
-  },
-];
+import { useLanguage } from "@/components/providers/language-provider";
 
 const listContainer = {
   hidden: { opacity: 0 },
@@ -81,6 +55,7 @@ function StatItem({
 }
 
 export function WhyUs() {
+  const { locale, t } = useLanguage();
   const families = useCountUp(500, 1500, "+");
   const rating = useCountUp(5, 1200);
   const years = useCountUp(3, 1200, "+");
@@ -97,22 +72,22 @@ export function WhyUs() {
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <div>
             <SectionHeader
-              eyebrow="Why Choose Maid My Day?"
-              title="Trusted support for expat households"
-              description="We understand what it takes to settle into a new city. Maid My Day brings professional, reliable home and relocation services to families who need them most."
+              eyebrow={t.whyUs.eyebrow}
+              title={t.whyUs.title}
+              description={t.whyUs.description}
               align="left"
             />
 
             <motion.ul
+              key={locale}
               variants={listContainer}
               initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-80px" }}
-              className="mt-8 space-y-3 sm:mt-10"
+              animate="visible"
+              className={cn("space-y-3", sectionHeaderGap)}
             >
-              {trustPoints.map((point) => (
+              {t.whyUs.trustPoints.map((point, index) => (
                 <motion.li
-                  key={point.title}
+                  key={index}
                   variants={listItem}
                   className="section-surface flex gap-3.5 rounded-xl p-4"
                 >
@@ -138,7 +113,7 @@ export function WhyUs() {
             <div className="image-frame relative h-[260px] overflow-hidden rounded-2xl sm:h-[360px] lg:h-[480px]">
               <FillImage
                 src={images.whyUs}
-                alt="Happy family enjoying their home in Addis Ababa"
+                alt={t.whyUs.imageAlt}
                 className="transition-transform duration-700 ease-out hover:scale-105"
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
@@ -149,19 +124,19 @@ export function WhyUs() {
                 <StatItem
                   icon={Users}
                   value={families.count}
-                  label="Families"
+                  label={t.whyUs.stats.families}
                   countRef={families.ref}
                 />
                 <StatItem
                   icon={Star}
                   value={rating.count === "5" ? "5.0" : rating.count}
-                  label="Rating"
+                  label={t.whyUs.stats.rating}
                   countRef={rating.ref}
                 />
                 <StatItem
                   icon={Award}
                   value={years.count}
-                  label="Years"
+                  label={t.whyUs.stats.years}
                   countRef={years.ref}
                 />
               </div>
