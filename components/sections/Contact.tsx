@@ -7,9 +7,11 @@ import { toast } from "sonner";
 
 import { SectionHeader } from "@/components/section-header";
 import { SiteContainer } from "@/components/layout/site-container";
+import { SectionBackground, sectionContentClass, sectionShellClass } from "@/components/section-background";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { images } from "@/lib/images";
 import { staggerContainer, staggerItem } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 
@@ -197,8 +199,14 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="bg-white py-16 sm:py-20 lg:py-28">
-      <SiteContainer>
+    <section id="contact" className={`${sectionShellClass} py-16 sm:py-20 lg:py-28`}>
+      <SectionBackground
+        image={images.backgrounds.contact}
+        overlay="soft"
+        imageOpacity={0.52}
+        objectPosition="center 45%"
+      />
+      <SiteContainer className={sectionContentClass}>
         <div className="grid gap-10 lg:grid-cols-[1fr_1.1fr] lg:items-start lg:gap-14">
           <motion.div
             className="lg:pt-2"
@@ -227,7 +235,7 @@ export function Contact() {
                   variants={staggerItem}
                   whileHover={{ y: -2 }}
                   transition={{ type: "spring", stiffness: 400, damping: 28 }}
-                  className="flex items-start gap-3.5 rounded-2xl bg-ink/[0.02] p-4"
+                  className="section-surface flex items-start gap-3.5 rounded-2xl p-4"
                 >
                   <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary/10">
                     <item.icon size={15} className="text-primary" strokeWidth={1.5} />
@@ -253,7 +261,7 @@ export function Contact() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-            className="rounded-3xl bg-ink/[0.02] p-6 sm:p-8 lg:p-9"
+            className="section-surface rounded-3xl p-6 sm:p-8 lg:p-9"
           >
             <motion.form
               ref={formRef}

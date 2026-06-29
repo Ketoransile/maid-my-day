@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 
 import { Navbar } from "@/components/layout/Navbar";
+import { ChatWidget } from "@/components/chat/chat-widget";
+import { SocialFab } from "@/components/social/social-fab";
 import { LenisProvider } from "@/components/providers/lenis-provider";
 import { Toaster } from "@/components/ui/sonner";
 
@@ -42,6 +44,8 @@ export default function RootLayout({
         <LenisProvider>
           <Navbar />
           {children}
+          <SocialFab />
+          <ChatWidget />
           <Toaster />
         </LenisProvider>
       </body>

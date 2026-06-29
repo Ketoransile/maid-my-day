@@ -5,6 +5,7 @@ import { Quote } from "lucide-react";
 
 import { SectionHeader } from "@/components/section-header";
 import { SiteContainer } from "@/components/layout/site-container";
+import { SectionBackground, sectionContentClass, sectionShellClass } from "@/components/section-background";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent } from "@/components/ui/card";
 import {
@@ -66,40 +67,47 @@ const testimonials: Testimonial[] = [
 function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
   return (
     <motion.div
+      className="h-full"
       whileHover={{ y: -4 }}
       transition={{ type: "spring", stiffness: 400, damping: 28 }}
     >
-      <Card className="h-full">
-      <CardContent className="flex h-full flex-col p-6">
-        <Quote size={20} className="mb-3 text-primary/40" strokeWidth={1.5} />
-        <p className="flex-1 text-[15px] leading-relaxed text-ink/80">
-          &ldquo;{testimonial.quote}&rdquo;
-        </p>
-        <div className="mt-6 flex items-center gap-3 border-t border-ink/[0.06] pt-5">
-          <Avatar className="h-11 w-11">
-            <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
-            <AvatarFallback>
-              {testimonial.name
-                .split(" ")
-                .map((n) => n[0])
-                .join("")}
-            </AvatarFallback>
-          </Avatar>
-          <div>
-            <p className="text-sm font-semibold text-ink">{testimonial.name}</p>
-            <p className="text-[13px] text-ink/60">{testimonial.role}</p>
+      <Card className="section-surface h-full border-0 shadow-none">
+        <CardContent className="flex h-full flex-col p-6 sm:p-7">
+          <Quote size={20} className="mb-4 text-primary/45" strokeWidth={1.5} />
+          <p className="flex-1 text-[15px] leading-relaxed text-ink/80 sm:text-base sm:leading-relaxed">
+            &ldquo;{testimonial.quote}&rdquo;
+          </p>
+          <div className="mt-6 flex items-center gap-3 border-t border-ink/6 pt-5 sm:mt-7">
+            <Avatar className="h-11 w-11 ring-2 ring-white">
+              <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
+              <AvatarFallback>
+                {testimonial.name
+                  .split(" ")
+                  .map((n) => n[0])
+                  .join("")}
+              </AvatarFallback>
+            </Avatar>
+            <div>
+              <p className="text-sm font-semibold text-ink">{testimonial.name}</p>
+              <p className="text-[13px] leading-snug text-ink/60">{testimonial.role}</p>
+            </div>
           </div>
-        </div>
-      </CardContent>
-    </Card>
+        </CardContent>
+      </Card>
     </motion.div>
   );
 }
 
 export function Testimonials() {
   return (
-    <section id="testimonials" className="bg-white py-16 sm:py-24 lg:py-32">
-      <SiteContainer>
+    <section id="testimonials" className={`${sectionShellClass} py-16 sm:py-24 lg:py-32`}>
+      <SectionBackground
+        image={images.backgrounds.testimonials}
+        overlay="warm"
+        imageOpacity={0.5}
+        objectPosition="center 30%"
+      />
+      <SiteContainer className={sectionContentClass}>
         <SectionHeader
           eyebrow="Client Stories"
           title="What Our Clients Say"
@@ -111,24 +119,24 @@ export function Testimonials() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.55, ease: easeOut }}
-          className="mt-12"
+          className="mt-12 sm:mt-14"
         >
           <Carousel
             opts={{
-              align: "center",
+              align: "start",
               loop: true,
             }}
             className="w-full"
           >
-            <div className="flex items-center gap-3 sm:gap-5 lg:gap-8">
-              <CarouselPrevious className="static left-auto top-auto shrink-0 translate-y-0" />
+            <div className="flex w-full items-center gap-4 sm:gap-5 lg:gap-6">
+              <CarouselPrevious className="static left-auto top-auto h-10 w-10 shrink-0 translate-y-0" />
 
-              <div className="mx-auto min-w-0 max-w-4xl flex-1 px-1 sm:px-2 lg:max-w-3xl">
-                <CarouselContent className="-ml-3 sm:-ml-4">
+              <div className="min-w-0 flex-1">
+                <CarouselContent className="-ml-5 sm:-ml-6">
                   {testimonials.map((testimonial) => (
                     <CarouselItem
                       key={testimonial.name}
-                      className="pl-3 sm:pl-4 md:basis-[88%] lg:basis-[42%] xl:basis-[36%]"
+                      className="pl-5 sm:pl-6 basis-[92%] sm:basis-[72%] md:basis-1/2 lg:basis-1/3"
                     >
                       <TestimonialCard testimonial={testimonial} />
                     </CarouselItem>
@@ -136,7 +144,7 @@ export function Testimonials() {
                 </CarouselContent>
               </div>
 
-              <CarouselNext className="static right-auto top-auto shrink-0 translate-y-0" />
+              <CarouselNext className="static right-auto top-auto h-10 w-10 shrink-0 translate-y-0" />
             </div>
           </Carousel>
         </motion.div>

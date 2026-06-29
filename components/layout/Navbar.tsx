@@ -42,22 +42,22 @@ function scrollToTop() {
 }
 
 export function Navbar() {
-  const scrolled = useNavbarScroll(60);
+  const scrolled = useNavbarScroll(48);
   const [open, setOpen] = useState(false);
 
   return (
     <motion.nav
       initial={false}
       className={cn(
-        "navbar-glass fixed inset-x-0 top-0 z-[100] w-full",
-        scrolled && "navbar-glass-scrolled",
+        "navbar-shell fixed inset-x-0 top-0 z-[100] w-full",
+        scrolled ? "navbar-glass-scrolled" : "navbar-over-hero",
       )}
     >
       <SiteContainer className="flex h-16 items-center justify-between">
         <button
           type="button"
           onClick={scrollToTop}
-          className="flex items-center gap-2"
+          className="navbar-brand flex items-center gap-2"
         >
           <Gem size={18} className="text-primary" strokeWidth={1.5} />
           <span className="text-[17px] font-semibold text-ink">Maid My Day</span>
@@ -71,7 +71,7 @@ export function Navbar() {
                   <button
                     type="button"
                     onClick={() => scrollToSection(link.id)}
-                    className="cursor-pointer rounded-md bg-transparent px-4 py-2 text-sm font-medium text-ink/80 transition-colors hover:bg-ink/5 hover:text-ink"
+                    className="navbar-link cursor-pointer rounded-md bg-transparent px-4 py-2 text-sm font-medium text-ink/85 transition-colors hover:bg-white/30 hover:text-ink"
                   >
                     {link.label}
                   </button>
@@ -89,7 +89,7 @@ export function Navbar() {
 
         <Sheet open={open} onOpenChange={setOpen}>
           <SheetTrigger asChild className="md:hidden">
-            <Button variant="ghost" size="icon" className="text-ink hover:bg-ink/5">
+            <Button variant="ghost" size="icon" className="navbar-link text-ink hover:bg-white/30">
               <Menu size={20} strokeWidth={1.5} />
               <span className="sr-only">Open menu</span>
             </Button>

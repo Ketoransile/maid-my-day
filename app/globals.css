@@ -91,34 +91,85 @@ body[data-scroll-locked] {
 }
 
 .glass {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(28, 28, 28, 0.08);
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow: 0 4px 24px rgba(28, 28, 28, 0.06);
   border-radius: 1rem;
+}
+
+.section-surface {
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  box-shadow:
+    0 2px 20px rgba(28, 28, 28, 0.05),
+    0 0 0 1px rgba(28, 28, 28, 0.03);
+}
+
+.faq-item {
+  background: #ffffff;
+  border: 1px solid rgba(43, 95, 75, 0.16);
+  border-left: 4px solid #2b5f4b;
+  box-shadow:
+    0 2px 12px rgba(28, 28, 28, 0.07),
+    0 0 0 1px rgba(28, 28, 28, 0.03);
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.faq-item:hover {
+  border-color: rgba(43, 95, 75, 0.28);
+  border-left-color: #2b5f4b;
+  box-shadow:
+    0 4px 18px rgba(28, 28, 28, 0.09),
+    0 0 0 1px rgba(43, 95, 75, 0.06);
+}
+
+.faq-item:has([data-state="open"]) {
+  border-color: rgba(43, 95, 75, 0.32);
+  border-left-color: #2b5f4b;
+  background: #f8fbf9;
+  box-shadow: 0 8px 28px rgba(43, 95, 75, 0.14);
+}
+
+.faq-item .faq-answer {
+  border-top: 1px solid rgba(43, 95, 75, 0.12);
 }
 
 .navbar-shell {
   isolation: isolate;
-}
-
-.navbar-glass {
-  background: rgba(255, 255, 255, 0.94);
-  backdrop-filter: blur(14px) saturate(160%);
-  -webkit-backdrop-filter: blur(14px) saturate(160%);
-  border-bottom: 1px solid rgba(28, 28, 28, 0.06);
   transition:
     background-color 0.45s ease,
     border-color 0.45s ease,
+    box-shadow 0.45s ease,
     backdrop-filter 0.45s ease,
     -webkit-backdrop-filter 0.45s ease;
 }
 
+/* At top of page — floats over hero video */
+.navbar-over-hero {
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  box-shadow: none;
+}
+
+.navbar-over-hero .navbar-brand,
+.navbar-over-hero .navbar-link {
+  text-shadow: 0 0 24px rgba(255, 255, 255, 0.95);
+}
+
+/* After scroll — solid glass bar for readability on content sections */
 .navbar-glass-scrolled {
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.88);
   backdrop-filter: blur(18px) saturate(170%);
   -webkit-backdrop-filter: blur(18px) saturate(170%);
-  border-bottom-color: rgba(28, 28, 28, 0.08);
+  border-bottom: 1px solid rgba(28, 28, 28, 0.08);
+  box-shadow: 0 4px 24px rgba(28, 28, 28, 0.04);
 }
 
 /* Nav underline — only the hovered link (not parent group-hover) */
@@ -128,6 +179,70 @@ nav button:hover .nav-underline {
 
 .section-alt {
   background-color: rgba(28, 28, 28, 0.02);
+}
+
+.hero-ambient-glow {
+  background:
+    radial-gradient(ellipse 80% 60% at 75% 20%, rgba(43, 95, 75, 0.14), transparent 60%),
+    radial-gradient(ellipse 50% 40% at 15% 80%, rgba(43, 95, 75, 0.08), transparent 55%);
+  animation: hero-glow-pulse 10s ease-in-out infinite;
+}
+
+@keyframes hero-glow-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-ambient-glow {
+    animation: none;
+    opacity: 0.7;
+  }
+
+  .hero-media-drift-static {
+    animation: none;
+    transform: none;
+  }
+
+  .hero-video-layer {
+    transform: none;
+  }
+}
+
+.hero-media-drift-static {
+  transform: scale(1.06);
+  animation: hero-ken-burns 32s ease-in-out infinite alternate;
+  object-position: 60% center;
+}
+
+.hero-video-layer {
+  transform: scale(1.04);
+  object-position: 60% center;
+}
+
+.hero-copy .hero-title {
+  text-shadow:
+    0 1px 1px rgba(255, 255, 255, 0.95),
+    0 0 40px rgba(255, 255, 255, 0.75);
+}
+
+.hero-copy .hero-lead,
+.hero-copy .hero-eyebrow {
+  text-shadow: 0 0 28px rgba(255, 255, 255, 0.85);
+}
+
+@keyframes hero-ken-burns {
+  0% {
+    transform: scale(1.06) translate3d(0, 0, 0);
+  }
+  100% {
+    transform: scale(1.12) translate3d(-1.5%, -1%, 0);
+  }
 }
 
 .image-frame {

@@ -1,10 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { CalendarDays, Home, UsersRound } from "lucide-react";
 
 import { FillImage } from "@/components/fill-image";
 import { SiteContainer } from "@/components/layout/site-container";
-import { Reveal, RevealWords } from "@/components/motion/reveal-text";
+import { SectionBackground, sectionContentClass, sectionShellClass } from "@/components/section-background";
+import { SectionHeader } from "@/components/section-header";
+import { Reveal } from "@/components/motion/reveal-text";
 import { easeOut } from "@/lib/motion";
 import { images } from "@/lib/images";
 import { cn } from "@/lib/utils";
@@ -41,6 +44,41 @@ const serviceOrbits = [
     className: "left-1/2 -top-5 -translate-x-1/2 sm:-top-7",
   },
 ] as const;
+
+const missionPillars = [
+  {
+    icon: Home,
+    title: "Find your home",
+    detail: "Relocation support to help you settle into the right neighborhood and property.",
+  },
+  {
+    icon: UsersRound,
+    title: "Hire trusted staff",
+    detail: "Carefully vetted housemaids, drivers, and household help you can rely on.",
+  },
+  {
+    icon: CalendarDays,
+    title: "Stay organized",
+    detail: "Day-to-day home management so your routine runs smoothly in Addis Ababa.",
+  },
+] as const;
+
+const pillarContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.08 },
+  },
+};
+
+const pillarItem = {
+  hidden: { opacity: 0, y: 10 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.45, ease: easeOut },
+  },
+};
 
 function ServiceOrbit({
   label,
@@ -88,37 +126,62 @@ function ServiceOrbit({
 
 export function Mission() {
   return (
-    <section id="mission" className="section-alt py-16 sm:py-20 lg:py-28">
-      <SiteContainer>
+    <section id="mission" className={`${sectionShellClass} py-16 sm:py-20 lg:py-28`}>
+      <SectionBackground
+        image={images.backgrounds.mission}
+        overlay="alt"
+        imageOpacity={0.48}
+        objectPosition="center 20%"
+      />
+      <SiteContainer className={sectionContentClass}>
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-14">
           <div className="order-1 lg:order-2">
-            <Reveal as="p" className="section-label text-primary" delay={0.05}>
-              Our Mission
-            </Reveal>
-            <RevealWords
-              as="h2"
-              className="mt-3 text-[1.625rem] font-semibold leading-snug tracking-tight text-ink sm:text-[2rem] lg:text-[2.25rem]"
-              text="Making life in Addis Ababa easier for expat families"
-              delay={0.1}
+            <SectionHeader
+              eyebrow="Our Mission"
+              title="Making life in Addis Ababa easier for expat families"
+              description="To make living in Addis Ababa easier, cleaner, and more comfortable through trusted home and relocation support."
+              align="left"
             />
+
             <Reveal
               as="p"
-              className="mt-6 text-lg leading-relaxed text-ink/70 sm:text-xl"
-              delay={0.22}
-            >
-              To make living in Addis Ababa easier, cleaner, and more comfortable
-              through trusted home and relocation support.
-            </Reveal>
-            <Reveal
-              as="p"
-              className="mt-5 text-[0.9375rem] leading-relaxed text-ink/60"
+              className="mt-5 max-w-xl text-[0.9375rem] leading-relaxed text-ink/65 sm:mt-6 sm:text-base"
               delay={0.32}
             >
-              Maid My Day exists to take the stress out of settling in. Whether
-              you need help finding a home, hiring trusted staff, or keeping
-              daily life organized, we are here to support expats, diplomats,
-              embassy staff, and international professionals at every step.
+              Maid My Day exists to take the stress out of settling in. We
+              support expats, diplomats, embassy staff, and international
+              professionals at every step.
             </Reveal>
+
+            <motion.ul
+              variants={pillarContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-60px" }}
+              className="mt-8 space-y-3 sm:mt-10"
+            >
+              {missionPillars.map((pillar) => (
+                <motion.li
+                  key={pillar.title}
+                  variants={pillarItem}
+                  className="section-surface flex gap-3.5 rounded-xl p-4"
+                >
+                  <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary/10">
+                    <pillar.icon
+                      size={14}
+                      className="text-primary"
+                      strokeWidth={2}
+                    />
+                  </span>
+                  <div>
+                    <p className="font-medium text-ink">{pillar.title}</p>
+                    <p className="mt-1.5 text-sm leading-relaxed text-ink/65">
+                      {pillar.detail}
+                    </p>
+                  </div>
+                </motion.li>
+              ))}
+            </motion.ul>
           </div>
 
           <motion.div

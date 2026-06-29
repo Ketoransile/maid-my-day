@@ -5,8 +5,8 @@ import { Car, ClipboardList, Home, PawPrint, Sparkles } from "lucide-react";
 
 import { FillImage } from "@/components/fill-image";
 import { SiteContainer } from "@/components/layout/site-container";
+import { SectionBackground, sectionContentClass, sectionShellClass } from "@/components/section-background";
 import { SectionHeader } from "@/components/section-header";
-import { Reveal, RevealWords } from "@/components/motion/reveal-text";
 import { images } from "@/lib/images";
 import { easeOut } from "@/lib/motion";
 import type { ServiceItem } from "@/types";
@@ -14,19 +14,19 @@ import type { ServiceItem } from "@/types";
 const services: ServiceItem[] = [
   {
     icon: Home,
-    title: "Housing & Relocation Support",
+    title: "Housing & Relocation",
     description:
-      "Professional assistance with finding and settling into your new home.",
+      "Finding and settling into your new home with professional relocation support.",
     image: images.services.housing,
-    imageAlt: "Couple settling into a new home with moving boxes",
+    imageAlt: "House keys for a new home relocation",
   },
   {
     icon: Sparkles,
     title: "Trained Housemaids",
     description:
-      "Reliable and carefully selected staff for cleaning, laundry, cooking, and household support.",
+      "Reliable staff for cleaning, laundry, cooking, and daily household care.",
     image: images.services.housemaid,
-    imageAlt: "Professional housemaid cleaning a kitchen",
+    imageAlt: "Professional housemaid caring for a home",
   },
   {
     icon: Car,
@@ -34,15 +34,15 @@ const services: ServiceItem[] = [
     description:
       "Safe, dependable drivers for personal and family transportation.",
     image: images.services.driver,
-    imageAlt: "Professional driver behind the wheel",
+    imageAlt: "Professional driver with a passenger in the car",
   },
   {
     icon: PawPrint,
-    title: "Pet Care Services",
+    title: "Pet Care",
     description:
       "Trusted care for your pets while you work or travel.",
     image: images.services.petCare,
-    imageAlt: "Veterinary care for a small dog",
+    imageAlt: "Veterinary professionals caring for a pet",
   },
   {
     icon: ClipboardList,
@@ -50,64 +50,56 @@ const services: ServiceItem[] = [
     description:
       "Complete support to keep your home running smoothly.",
     image: images.services.homeManagement,
-    imageAlt: "Professional home management and property care",
+    imageAlt: "Well-organized modern household",
   },
 ];
 
 const containerVariants = {
   hidden: {},
   visible: {
-    transition: { staggerChildren: 0.12 },
+    transition: { staggerChildren: 0.08 },
   },
 };
 
-const rowVariants = {
-  hidden: { opacity: 0, y: 28, filter: "blur(8px)" },
-  visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.55, ease: easeOut } },
+const cardVariants = {
+  hidden: { opacity: 0, y: 20, filter: "blur(6px)" },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.45, ease: easeOut },
+  },
 };
 
-function ServiceRow({
-  service,
-  reversed,
-}: {
-  service: ServiceItem;
-  reversed?: boolean;
-}) {
+function ServiceCard({ service }: { service: ServiceItem }) {
   return (
     <motion.article
-      variants={rowVariants}
-      className={`grid items-center gap-6 sm:gap-8 lg:grid-cols-2 lg:gap-16 ${
-        reversed ? "lg:[&>*:first-child]:order-2" : ""
-      }`}
+      variants={cardVariants}
+      className="group section-surface flex flex-col overflow-hidden rounded-xl transition-shadow duration-300 hover:shadow-[0_10px_32px_rgba(28,28,28,0.09)]"
     >
-      <div className="image-frame relative aspect-[16/9] overflow-hidden rounded-2xl sm:aspect-[16/10] lg:aspect-[16/11]">
+      <div className="image-frame relative aspect-5/3 overflow-hidden">
         <FillImage
           src={service.image}
           alt={service.imageAlt}
-          sizes="(max-width: 1024px) 100vw, 50vw"
-          className="transition-transform duration-700 ease-out hover:scale-[1.03]"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          className="transition-transform duration-500 ease-out group-hover:scale-[1.04]"
         />
-        <div className="absolute bottom-0 left-0 right-0 bg-primary/92 px-4 py-3 sm:px-5 sm:py-3.5">
-          <div className="flex items-center gap-2">
-            <service.icon size={16} className="text-white/95" strokeWidth={1.5} />
-            <span className="text-sm font-medium text-white">{service.title}</span>
-          </div>
-        </div>
       </div>
 
-      <div className="lg:max-w-lg lg:py-2">
-        <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10">
-          <service.icon size={20} className="text-primary" strokeWidth={1.5} />
+      <div className="flex flex-1 flex-col p-4 sm:p-4.5">
+        <div className="flex items-start gap-2.5">
+          <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary/10">
+            <service.icon size={15} className="text-primary" strokeWidth={1.75} />
+          </span>
+          <div className="min-w-0">
+            <h3 className="text-[0.9375rem] font-semibold leading-snug text-ink sm:text-base">
+              {service.title}
+            </h3>
+            <p className="mt-1.5 text-[0.8125rem] leading-relaxed text-ink/60 sm:text-sm">
+              {service.description}
+            </p>
+          </div>
         </div>
-        <RevealWords
-          as="h3"
-          className="mt-4 text-xl font-semibold text-ink"
-          text={service.title}
-          delay={0.08}
-        />
-        <Reveal as="p" className="mt-3 text-[0.9375rem] leading-relaxed text-ink/60 sm:text-base" delay={0.18}>
-          {service.description}
-        </Reveal>
       </div>
     </motion.article>
   );
@@ -115,27 +107,29 @@ function ServiceRow({
 
 export function Services() {
   return (
-    <section id="services" className="bg-white py-16 sm:py-20 lg:py-28">
-      <SiteContainer>
+    <section id="services" className={`${sectionShellClass} py-12 sm:py-16 lg:py-20`}>
+      <SectionBackground
+        image={images.backgrounds.services}
+        overlay="soft"
+        imageOpacity={0.58}
+        objectPosition="center 25%"
+      />
+      <SiteContainer className={sectionContentClass}>
         <SectionHeader
           eyebrow="Our Services"
           title="Everything your home needs in Addis"
-          description="From relocation to daily household support, Maid My Day covers the services expat families rely on most."
+          description="Professional household and relocation support for expat families."
         />
 
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-60px" }}
-          className="mt-12 space-y-12 sm:mt-14 sm:space-y-16 lg:mt-16 lg:space-y-24"
+          viewport={{ once: true, margin: "-40px" }}
+          className="mt-8 grid grid-cols-1 gap-4 sm:mt-10 sm:grid-cols-2 sm:gap-5 lg:mt-12 lg:grid-cols-3"
         >
-          {services.map((service, index) => (
-            <ServiceRow
-              key={service.title}
-              service={service}
-              reversed={index % 2 === 1}
-            />
+          {services.map((service) => (
+            <ServiceCard key={service.title} service={service} />
           ))}
         </motion.div>
       </SiteContainer>

@@ -1,28 +1,61 @@
-/** Service and section images */
+/** Service and section images — curated for premium home & relocation in Addis */
 export const images = {
-  /** Active hero image */
-  hero: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1000&q=85",
+  /** Hero poster — first frame while video buffers */
+  hero: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=1400&q=85&auto=format&fit=crop",
+  /** Local looping hero background (public/hero_video.mp4) */
+  heroVideo: "/hero_video.mp4",
   /** Previous hero — set `hero` to this URL to restore */
   heroOriginal:
-    "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=1000&q=85",
+    "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1000&q=85",
+  backgrounds: {
+    /** Trust bar — bright home interior strip */
+    trustBar:
+      "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=1800&q=85&auto=format&fit=crop",
+    /** Services — airy living room */
+    services:
+      "https://images.unsplash.com/photo-1600566753194-710a013ccf6f?w=1800&q=85&auto=format&fit=crop",
+    /** Why Us — warm, trusted home atmosphere for expat families */
+    whyUs:
+      "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1800&q=85&auto=format&fit=crop",
+    /** How It Works — light-filled home interior, step-by-step journey */
+    howItWorks:
+      "https://images.unsplash.com/photo-1600585152915-d208bec867a1?w=1800&q=85&auto=format&fit=crop",
+    /** Testimonials — warm, inviting lounge where clients feel at home */
+    testimonials:
+      "https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1800&q=85&auto=format&fit=crop",
+    /** Mission — elegant residential exterior, homes we help run */
+    mission:
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1800&q=85&auto=format&fit=crop",
+    /** FAQ — bright minimal interior, calm backdrop for Q&A */
+    faq:
+      "https://images.unsplash.com/photo-1600047509800-ba8f99d2cdde?w=1800&q=85&auto=format&fit=crop",
+    /** Contact — welcoming dining space, hospitality & reach-out */
+    contact:
+      "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=1800&q=85&auto=format&fit=crop",
+  },
   whyUs:
-    "https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=900&q=80",
+    "https://images.unsplash.com/photo-1609220136736-4430c20ba5b0?w=900&q=80&auto=format&fit=crop",
   mission: {
     main: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=900&q=80",
     detail:
       "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80",
   },
   services: {
+    /** Keys — finding and settling into a new home */
     housing:
-      "https://plus.unsplash.com/premium_photo-1680300960757-376ffe4a18ce?w=900&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=900&q=80&auto=format&fit=crop",
+    /** Professional home cleaning and care */
     housemaid:
-      "https://plus.unsplash.com/premium_photo-1664910556213-4395ebca30c2?w=900&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=900&q=80&auto=format&fit=crop",
+    /** Chauffeur-style personal transport */
     driver:
-      "https://images.unsplash.com/photo-1520088096110-20308c23a3cd?w=900&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1667020854803-0305af085242?w=900&q=80&auto=format&fit=crop",
+    /** Warm, attentive pet care */
     petCare:
       "https://plus.unsplash.com/premium_photo-1661962620229-614e281fe009?w=900&q=80&auto=format&fit=crop",
+    /** Organized, well-run modern household */
     homeManagement:
-      "https://plus.unsplash.com/premium_photo-1661776260388-f5d1b14ce8a2?w=900&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1556912172-45b7abe8b7e1?w=900&q=80&auto=format&fit=crop",
   },
   avatars: {
     james:

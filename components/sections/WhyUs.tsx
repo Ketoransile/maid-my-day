@@ -5,8 +5,8 @@ import { Award, Check, Star, Users } from "lucide-react";
 
 import { SectionHeader } from "@/components/section-header";
 import { SiteContainer } from "@/components/layout/site-container";
+import { SectionBackground, sectionContentClass, sectionShellClass } from "@/components/section-background";
 import { FillImage } from "@/components/fill-image";
-import { Separator } from "@/components/ui/separator";
 import { images } from "@/lib/images";
 import { easeOut } from "@/lib/motion";
 import { useCountUp } from "@/hooks/use-count-up";
@@ -86,8 +86,14 @@ export function WhyUs() {
   const years = useCountUp(3, 1200, "+");
 
   return (
-    <section id="why-us" className="section-alt py-16 sm:py-24 lg:py-32">
-      <SiteContainer>
+    <section id="why-us" className={`${sectionShellClass} py-16 sm:py-24 lg:py-32`}>
+      <SectionBackground
+        image={images.backgrounds.whyUs}
+        overlay="warm"
+        imageOpacity={0.46}
+        objectPosition="center 25%"
+      />
+      <SiteContainer className={sectionContentClass}>
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <div>
             <SectionHeader
@@ -97,29 +103,31 @@ export function WhyUs() {
               align="left"
             />
 
-            <Separator className="my-6" />
-
             <motion.ul
               variants={listContainer}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-80px" }}
-              className="space-y-4"
+              className="mt-8 space-y-3 sm:mt-10"
             >
               {trustPoints.map((point) => (
                 <motion.li
                   key={point.title}
                   variants={listItem}
-                  className="flex gap-3"
+                  className="section-surface flex gap-3.5 rounded-xl p-4"
                 >
-                  <Check
-                    size={16}
-                    className="mt-0.5 shrink-0 text-primary"
-                    strokeWidth={1.5}
-                  />
+                  <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary/10">
+                    <Check
+                      size={14}
+                      className="text-primary"
+                      strokeWidth={2}
+                    />
+                  </span>
                   <div>
                     <p className="font-medium text-ink">{point.title}</p>
-                    <p className="text-sm text-ink/60">{point.detail}</p>
+                    <p className="mt-1.5 text-sm leading-relaxed text-ink/65">
+                      {point.detail}
+                    </p>
                   </div>
                 </motion.li>
               ))}
@@ -130,28 +138,26 @@ export function WhyUs() {
             <div className="image-frame relative h-[260px] overflow-hidden rounded-2xl sm:h-[360px] lg:h-[480px]">
               <FillImage
                 src={images.whyUs}
-                alt="Family in a modern home in Addis Ababa"
+                alt="Expat family enjoying trusted home support in Addis Ababa"
                 className="transition-transform duration-700 ease-out hover:scale-105"
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
             </div>
 
             <div className="glass absolute -bottom-6 left-4 right-4 sm:left-6 sm:right-auto sm:w-[320px]">
-              <div className="flex items-center">
+              <div className="flex items-center divide-x divide-ink/10">
                 <StatItem
                   icon={Users}
                   value={families.count}
                   label="Families"
                   countRef={families.ref}
                 />
-                <Separator orientation="vertical" className="h-12" />
                 <StatItem
                   icon={Star}
                   value={rating.count === "5" ? "5.0" : rating.count}
                   label="Rating"
                   countRef={rating.ref}
                 />
-                <Separator orientation="vertical" className="h-12" />
                 <StatItem
                   icon={Award}
                   value={years.count}

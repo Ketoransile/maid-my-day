@@ -4,7 +4,9 @@ import { motion } from "framer-motion";
 
 import { Card } from "@/components/ui/card";
 import { SiteContainer } from "@/components/layout/site-container";
+import { SectionBackground, sectionContentClass, sectionShellClass } from "@/components/section-background";
 import { Reveal, RevealWords } from "@/components/motion/reveal-text";
+import { images } from "@/lib/images";
 import { easeOut, staggerItem } from "@/lib/motion";
 import { Separator } from "@/components/ui/separator";
 
@@ -39,8 +41,14 @@ const container = {
 
 export function HowItWorks() {
   return (
-    <section id="how-it-works" className="bg-primary py-16 sm:py-24 lg:py-32">
-      <SiteContainer>
+    <section id="how-it-works" className={`${sectionShellClass} py-16 sm:py-24 lg:py-32`}>
+      <SectionBackground
+        image={images.backgrounds.howItWorks}
+        overlay="brand"
+        imageOpacity={0.34}
+        objectPosition="center 40%"
+      />
+      <SiteContainer className={sectionContentClass}>
         <div className="max-w-xl">
           <Reveal as="p" className="text-xs font-medium uppercase tracking-[0.1em] text-white/60" delay={0.05}>
             The Process
@@ -66,7 +74,7 @@ export function HowItWorks() {
               variants={staggerItem}
               whileHover={{ y: -6, transition: { type: "spring", stiffness: 380, damping: 22 } }}
             >
-              <Card className="h-full border-white/[0.12] bg-white/5 shadow-none backdrop-blur-sm transition-colors hover:bg-white/[0.08]">
+              <Card className="h-full border-white/15 bg-white/10 shadow-none backdrop-blur-md transition-colors hover:border-white/25 hover:bg-white/14">
                 <div className="p-6">
                   <motion.span
                     className="text-[3rem] font-semibold leading-none text-white/20"
