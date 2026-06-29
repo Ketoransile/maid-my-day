@@ -68,8 +68,8 @@ export function Hero() {
             </Button>
             <Button
               size="lg"
-              variant="outline"
-              className="hero-btn-ghost h-12 w-full cursor-pointer border-white/50 bg-white/25 px-7 text-[15px] text-ink shadow-none backdrop-blur-md hover:border-white/70 hover:bg-white/40 sm:w-auto"
+              variant="ghost"
+              className="hero-btn-ghost h-12 w-full border px-7 text-[15px] shadow-none backdrop-blur-md sm:w-auto"
               onClick={() => scrollToSection("services")}
             >
               Our Services

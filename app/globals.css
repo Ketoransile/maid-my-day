@@ -163,6 +163,10 @@ body[data-scroll-locked] {
   text-shadow: 0 0 24px rgba(255, 255, 255, 0.95);
 }
 
+.navbar-brand {
+  cursor: pointer;
+}
+
 /* After scroll — solid glass bar for readability on content sections */
 .navbar-glass-scrolled {
   background: rgba(255, 255, 255, 0.88);
@@ -239,6 +243,18 @@ nav button:hover .nav-underline {
 .hero-copy .hero-lead,
 .hero-copy .hero-eyebrow {
   text-shadow: 0 0 28px rgba(255, 255, 255, 0.85);
+}
+
+.hero-btn-ghost {
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.3);
+  color: #1c1c1c !important;
+}
+
+.hero-btn-ghost:hover {
+  border-color: rgba(255, 255, 255, 0.85) !important;
+  background-color: rgba(255, 255, 255, 0.62) !important;
+  color: #1c1c1c !important;
 }
 
 @keyframes hero-ken-burns {

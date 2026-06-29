@@ -57,7 +57,7 @@ export function Navbar() {
         <button
           type="button"
           onClick={scrollToTop}
-          className="navbar-brand flex items-center gap-2"
+          className="navbar-brand flex cursor-pointer items-center gap-2"
         >
           <Gem size={18} className="text-primary" strokeWidth={1.5} />
           <span className="text-[17px] font-semibold text-ink">Maid My Day</span>
@@ -82,7 +82,11 @@ export function Navbar() {
         </NavigationMenu>
 
         <div className="hidden md:block">
-          <Button size="sm" onClick={() => scrollToSection("contact")}>
+          <Button
+            size="sm"
+            className="cursor-pointer"
+            onClick={() => scrollToSection("contact")}
+          >
             Contact Us
           </Button>
         </div>
@@ -110,7 +114,7 @@ export function Navbar() {
                     scrollToSection(link.id);
                     setOpen(false);
                   }}
-                  className="rounded-lg px-3 py-3 text-left text-sm font-medium text-ink transition-colors hover:bg-ink/5"
+                  className="rounded-lg px-3 py-3 text-left text-sm font-medium text-ink transition-colors hover:bg-ink/5 cursor-pointer"
                 >
                   {link.label}
                 </button>
