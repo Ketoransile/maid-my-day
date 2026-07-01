@@ -1,7 +1,9 @@
 export {
   defaultLocale,
   getTranslations,
+  isLocale,
   languageOptions,
+  localeHtmlLang,
   locales,
   type Locale,
   type Translations,

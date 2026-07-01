@@ -1,11 +1,11 @@
 import { getAIChatReply } from "@/lib/chat-ai";
 import { getChatReply } from "@/lib/chat-responder";
-import { defaultLocale, type Locale } from "@/lib/i18n";
+import { defaultLocale, isLocale, type Locale } from "@/lib/i18n";
 
 const MAX_MESSAGE_LENGTH = 500;
 
 function parseLocale(value: unknown): Locale {
-  if (value === "en" || value === "am" || value === "om" || value === "so") {
+  if (typeof value === "string" && isLocale(value)) {
     return value;
   }
   return defaultLocale;

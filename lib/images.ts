@@ -14,9 +14,8 @@ export const images = {
     /** Services — airy living room */
     services:
       "https://images.unsplash.com/photo-1600566753194-710a013ccf6f?w=1800&q=85&auto=format&fit=crop",
-    /** Why Us — warm, trusted home atmosphere for expat families */
-    whyUs:
-      "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1800&q=85&auto=format&fit=crop",
+    /** Why Us — Black family at home (local: Unsplash photo-1709216461598) */
+    whyUs: "/images/why-us/family.jpg",
     /** How It Works — light-filled home interior, step-by-step journey */
     howItWorks:
       "https://images.unsplash.com/photo-1600585152915-d208bec867a1?w=1800&q=85&auto=format&fit=crop",
@@ -33,8 +32,8 @@ export const images = {
     contact:
       "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=1800&q=85&auto=format&fit=crop",
   },
-  whyUs:
-    "https://plus.unsplash.com/premium_photo-1661660247608-236c8bafd3cb?w=900&q=80&auto=format&fit=crop",
+  /** Why Us section — local: Unsplash photo-1709216461598 */
+  whyUs: "/images/why-us/family.jpg",
   mission: {
     main: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=900&q=80",
     detail:

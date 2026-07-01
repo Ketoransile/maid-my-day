@@ -4,7 +4,9 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-import { ChevronDown, Gem, Menu } from "lucide-react";
+import { ChevronDown, Menu } from "lucide-react";
+
+import { BrandLogo } from "@/components/brand/brand-logo";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -230,7 +232,7 @@ function FullMenuSheet({
         <div className="shrink-0 px-6 pb-4 pt-6">
           <SheetHeader>
             <SheetTitle className="flex items-center gap-2">
-              <Gem size={18} className="text-primary" strokeWidth={1.5} />
+              <BrandLogo size={18} />
               Maid My Day
             </SheetTitle>
           </SheetHeader>
@@ -333,7 +335,7 @@ export function Navbar() {
             onClick={handleBrandClick}
             className="navbar-brand flex shrink-0 cursor-pointer items-center gap-2"
           >
-            <Gem size={18} className="text-primary" strokeWidth={1.5} />
+            <BrandLogo size={18} />
             <span className="text-[17px] font-semibold text-ink">Maid My Day</span>
           </Link>
 

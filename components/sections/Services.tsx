@@ -2,13 +2,12 @@
 
 import { motion } from "framer-motion";
 
-import { FillImage } from "@/components/fill-image";
+import { ServiceMediaShowcase } from "@/components/service-media-showcase";
 import { SiteContainer } from "@/components/layout/site-container";
 import { SectionBackground, sectionContentClass, sectionShellClass } from "@/components/section-background";
 import { SectionHeader } from "@/components/section-header";
 import { useLanguage } from "@/components/providers/language-provider";
 import { serviceIconMap, type ServiceIconKey } from "@/lib/i18n/service-icons";
-import { serviceImageMap } from "@/lib/i18n/service-images";
 import { images } from "@/lib/images";
 import { easeOut } from "@/lib/motion";
 import { sectionHeaderGap, sectionPaddingY } from "@/lib/section-spacing";
@@ -61,7 +60,6 @@ export function Services() {
         >
           {t.services.items.map((service) => {
             const Icon = serviceIconMap[service.id as ServiceIconKey];
-            const image = serviceImageMap[service.id as ServiceIconKey];
 
             return (
               <motion.article
@@ -69,12 +67,11 @@ export function Services() {
                 variants={cardVariants}
                 className="group section-surface flex flex-col overflow-hidden rounded-xl transition-shadow duration-300 hover:shadow-[0_10px_32px_rgba(28,28,28,0.09)]"
               >
-                <div className="image-frame relative aspect-5/3 overflow-hidden">
-                  <FillImage
-                    src={image}
+                <div className="image-frame overflow-hidden">
+                  <ServiceMediaShowcase
+                    serviceId={service.id}
                     alt={service.imageAlt}
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    className="transition-transform duration-500 ease-out group-hover:scale-[1.04]"
+                    variant="card"
                   />
                 </div>
 

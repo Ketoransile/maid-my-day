@@ -34,7 +34,7 @@ export const omOverrides: DeepPartial<Translations> = {
       services: "Tajaajila",
       howItWorks: "Akkaata",
       whyUs: "Maaliif nu",
-      faq: "FAQ",
+      faq: "Gaaffii",
       contact: "Quunnam",
       contactUs: "Quunnamaa",
     },

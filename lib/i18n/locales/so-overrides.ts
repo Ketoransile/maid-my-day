@@ -36,7 +36,7 @@ export const soOverrides: DeepPartial<Translations> = {
       services: "Adeegyo",
       howItWorks: "Habka",
       whyUs: "Annaga",
-      faq: "FAQ",
+      faq: "Su'aalaha",
       contact: "Xiriir",
       contactUs: "Xiriir",
     },

@@ -95,6 +95,14 @@ html.locale-so body {
   font-weight: 500;
 }
 
+html.locale-zh body {
+  font-family: "Noto Sans SC", "Outfit", ui-sans-serif, system-ui, sans-serif;
+}
+
+html.locale-ar body {
+  font-family: "Noto Sans Arabic", "Outfit", ui-sans-serif, system-ui, sans-serif;
+}
+
 /* Lock scroll without shifting layout — scrollbar-gutter on html reserves space */
 html[data-scroll-locked] {
   overflow: hidden !important;
@@ -252,6 +260,24 @@ body[data-scroll-locked] {
 .language-switcher-sheet-card:focus-visible {
   outline: 2px solid rgba(43, 95, 75, 0.35);
   outline-offset: 2px;
+}
+
+.language-switcher-list {
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+.language-switcher-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.language-switcher-list::-webkit-scrollbar-thumb {
+  background: rgba(28, 28, 28, 0.18);
+  border-radius: 999px;
+}
+
+.language-switcher-list::-webkit-scrollbar-thumb:hover {
+  background: rgba(28, 28, 28, 0.28);
 }
 
 .navbar-menu-btn {

@@ -66,7 +66,7 @@ export function WhyUs() {
         image={images.backgrounds.whyUs}
         overlay="warm"
         imageOpacity={0.46}
-        objectPosition="center 25%"
+        objectPosition="center 20%"
       />
       <SiteContainer className={sectionContentClass}>
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
@@ -114,7 +114,7 @@ export function WhyUs() {
               <FillImage
                 src={images.whyUs}
                 alt={t.whyUs.imageAlt}
-                className="transition-transform duration-700 ease-out hover:scale-105"
+                className="object-[center_20%] transition-transform duration-700 ease-out hover:scale-105"
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
             </div>

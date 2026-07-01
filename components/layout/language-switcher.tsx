@@ -107,10 +107,14 @@ function LanguageSheetSection({
       </button>
 
       <ul
+        data-lenis-prevent
         className={cn(
-          "mt-2 space-y-1 overflow-hidden pl-1 transition-all duration-300",
-          open ? "max-h-[28rem] opacity-100" : "max-h-0 opacity-0",
+          "language-switcher-list mt-2 min-h-0 space-y-1 pl-1 transition-all duration-300",
+          open
+            ? "max-h-[min(50vh,22rem)] overflow-y-auto overscroll-contain opacity-100"
+            : "max-h-0 overflow-hidden opacity-0",
         )}
+        onWheel={(event) => event.stopPropagation()}
         role="listbox"
         aria-label={t.nav.language}
       >
@@ -226,14 +230,18 @@ function LanguageNavDropdown({ className }: { className?: string }) {
 
       {open && (
         <div
-          role="listbox"
-          aria-label={t.nav.language}
-          className="language-switcher-panel absolute right-0 top-[calc(100%+0.5rem)] z-[250] w-[min(100vw-2rem,13.5rem)] overflow-hidden rounded-2xl border border-ink/[0.08] bg-white/95 p-1.5 shadow-[0_16px_40px_rgba(28,28,28,0.12)] backdrop-blur-xl animate-in fade-in-0 zoom-in-95 duration-150"
+          data-lenis-prevent
+          className="language-switcher-panel absolute end-0 top-[calc(100%+0.5rem)] z-[250] flex w-[min(100vw-2rem,13.5rem)] max-h-[min(70vh,28rem)] flex-col overflow-hidden rounded-2xl border border-ink/[0.08] bg-white/95 p-1.5 shadow-[0_16px_40px_rgba(28,28,28,0.12)] backdrop-blur-xl animate-in fade-in-0 zoom-in-95 duration-150"
         >
-          <p className="px-2.5 pb-1 pt-1 text-[10px] font-bold uppercase tracking-[0.14em] text-ink/45">
+          <p className="shrink-0 px-2.5 pb-1 pt-1 text-[10px] font-bold uppercase tracking-[0.14em] text-ink/45">
             {t.nav.language}
           </p>
-          <ul className="space-y-0.5">
+          <ul
+            role="listbox"
+            aria-label={t.nav.language}
+            className="language-switcher-list min-h-0 flex-1 space-y-0.5 overflow-y-auto overscroll-contain"
+            onWheel={(event) => event.stopPropagation()}
+          >
             {languageOptions.map((option) => {
               const active = locale === option.value;
               return (

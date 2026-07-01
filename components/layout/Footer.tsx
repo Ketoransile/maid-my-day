@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { Gem, Mail, MapPin, Phone } from "lucide-react";
+import { BrandLogo } from "@/components/brand/brand-logo";
+import { Mail, MapPin, Phone } from "lucide-react";
 
 import { Separator } from "@/components/ui/separator";
 import { SiteContainer } from "@/components/layout/site-container";
@@ -32,7 +33,7 @@ export function Footer() {
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
           <div>
             <div className="flex items-center gap-2">
-              <Gem size={18} className="text-primary" strokeWidth={1.5} />
+              <BrandLogo size={18} />
               <span className="text-base font-semibold text-ink">
                 {t.common.brandName}
               </span>

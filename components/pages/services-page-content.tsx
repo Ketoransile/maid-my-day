@@ -3,11 +3,10 @@
 import { motion } from "framer-motion";
 import { Check, MapPin } from "lucide-react";
 
-import { FillImage } from "@/components/fill-image";
+import { ServiceMediaShowcase } from "@/components/service-media-showcase";
 import { ContentSection } from "@/components/pages/content-section";
 import { InlineSectionHeader } from "@/components/inline-section-header";
 import { useLanguage } from "@/components/providers/language-provider";
-import { serviceDetailImageMap } from "@/lib/i18n/service-images";
 import { images } from "@/lib/images";
 import { easeOut, staggerContainer, staggerItem } from "@/lib/motion";
 import { sectionHeaderGap, sectionPaddingY } from "@/lib/section-spacing";
@@ -89,17 +88,15 @@ export function ServicesPageContent() {
               </motion.div>
 
               <motion.div
-                key={`${service.id}-image`}
-                initial={{ opacity: 0, scale: 0.97 }}
+                key={`${service.id}-images`}
+                initial={{ opacity: 0, scale: 0.98 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.55, ease: easeOut }}
-                className="image-frame relative aspect-[4/3] overflow-hidden rounded-2xl"
               >
-                <FillImage
-                  src={serviceDetailImageMap[service.id] ?? images.services.housing}
+                <ServiceMediaShowcase
+                  serviceId={service.id}
                   alt={service.imageAlt}
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                  className="transition-transform duration-700 hover:scale-105"
+                  variant="detail"
                 />
               </motion.div>
             </div>

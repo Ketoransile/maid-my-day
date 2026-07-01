@@ -12,6 +12,9 @@ import {
 import {
   defaultLocale,
   getTranslations,
+  isLocale,
+  localeHtmlLang,
+  locales,
   type Locale,
   type Translations,
 } from "@/lib/i18n";
@@ -30,7 +33,7 @@ function readStoredLocale(): Locale {
   if (typeof window === "undefined") return defaultLocale;
 
   const stored = window.localStorage.getItem(STORAGE_KEY);
-  if (stored === "en" || stored === "am" || stored === "om" || stored === "so") {
+  if (stored && isLocale(stored)) {
     return stored;
   }
 
@@ -50,8 +53,13 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     if (!ready) return;
 
     window.localStorage.setItem(STORAGE_KEY, locale);
-    document.documentElement.lang = locale === "en" ? "en" : locale;
-    document.documentElement.classList.remove("locale-am", "locale-om", "locale-so");
+    document.documentElement.lang = localeHtmlLang[locale];
+    document.documentElement.setAttribute("translate", "no");
+    document.documentElement.classList.add("notranslate");
+    document.documentElement.dir = locale === "ar" ? "rtl" : "ltr";
+    document.documentElement.classList.remove(
+      ...locales.filter((code) => code !== "en").map((code) => `locale-${code}`),
+    );
     if (locale !== "en") {
       document.documentElement.classList.add(`locale-${locale}`);
     }

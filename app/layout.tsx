@@ -20,6 +20,9 @@ export const metadata: Metadata = {
     "driver hire Addis Ababa",
     "home management Ethiopia",
   ],
+  other: {
+    google: "notranslate",
+  },
 };
 
 export default function RootLayout({
@@ -28,7 +31,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" translate="no" className="notranslate">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
@@ -37,11 +40,11 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
         <link
-          href="https://fonts.googleapis.com/css2?family=Noto+Sans+Ethiopic:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;500;600;700&family=Noto+Sans+Ethiopic:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap"
           rel="stylesheet"
         />
       </head>
-      <body className="overflow-x-clip font-sans antialiased">
+      <body className="notranslate overflow-x-clip font-sans antialiased">
         <LanguageProvider>
           <LenisProvider>
             <Navbar />
