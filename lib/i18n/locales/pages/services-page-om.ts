@@ -166,5 +166,29 @@ export const servicesPageOm: DeepPartial<Translations>["servicesPage"] = {
       ],
       imageAlt: "Mana ammayyaa sirritti qindaa'e Finfinnee",
     },
+    {
+      id: "childcare",
+      title: "Kunuunsa Ijoollee fi Guddiftuu",
+      summary:
+        "Guddiftuu fi eegduu ijoollee ho'aa fi amanamoo kan ijoollee keessan mana keessatti nagaa qaban, hirmaataa fi kunuunsaan eegan.",
+      paragraphs: [
+        "Ijoollee keessan nama haaraa waliin dhiisuun biyya adda ta'e keessatti qubachuu keessaa qaama ulfaataa keessaa tokko. Guddiftuun Maid My Day hundi osoo walsimsiisa hin dhiheessin dura ni gaafatama, wabiin isaanii ni mirkanaa'a, akkasumas ho'ina, obsaa fi muuxannoo dhugaa ijoollee kunuunsuu ni qoratama.",
+        "Fedhii yeroo guutuu, yeroo walakkaa fi yeroo yerootiif eegdota kaa'ina — deeggarsa daa'ima dhalatee kaasee hanga kunuunsa mana barumsaa boodaa ijoollee gurguddoof. Isin sirna, afaan fi seera mana ni murteessitu; nuti immoo muuxannoo fi amalli isaanii maatii keessaniif kan mijatu barbaadna, kunis gargaarsa nyaataa, barnoota mana, yeroo taphaa ykn geejjiba mana barumsaa ta'uu danda'a.",
+        "Kaa'umsa booda jijjiirama sagantaa, yaada fi bakka buusuuf qunnamtii keessan ni jirra — kanaaf yeroo hunda bakka quunnamtii amanamaa fi tasgabbii sammuu qabaattu yeroo hojjettan ykn imaltan.",
+      ],
+      includes: [
+        "Guddiftuu walga'ii, wabii fi qorannoo duubaan qoratame",
+        "Filannoo kunuunsa daa'ima dhalatee, mucaa xiqqaa fi mana barumsaa boodaa",
+        "Deeggarsa nyaataa, qulqullina, yeroo taphaa fi barnoota mana",
+        "Sagantaa yeroo guutuu, yeroo walakkaa fi yeroo yerootiin",
+        "Wabii bakka buusuu fi qindeessuu itti fufu",
+      ],
+      idealFor: [
+        "Warra hojjetan fi maatii ogummaa lamaan qaban",
+        "Maatii haaraa dhufan kunuunsa ijoollee naannoo amanamaa barbaadan",
+        "Warra kunuunsa jijjiiramaa ykn deeggarsa sagantaa isaanii waliin walsimu barbaadan",
+      ],
+      imageAlt: "Guddiftuu ijoollee xixiqqoo waliin dubbistu",
+    },
   ],
 };

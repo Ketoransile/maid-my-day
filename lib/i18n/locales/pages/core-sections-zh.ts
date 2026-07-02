@@ -67,6 +67,7 @@ export const coreSectionsZh: Pick<
       { id: "drivers", label: "司机", alt: "专业司机" },
       { id: "petCare", label: "宠物", alt: "宠物照护服务" },
       { id: "homeManagement", label: "家居管理", alt: "家居管理服务" },
+      { id: "childcare", label: "儿童照护", alt: "儿童照护与保姆服务" },
     ],
     pillars: [
       {
@@ -155,6 +156,7 @@ export const coreSectionsZh: Pick<
         { value: "driver", label: "专业司机" },
         { value: "pet-care", label: "宠物照护服务" },
         { value: "management", label: "家居管理" },
+        { value: "childcare", label: "儿童照护与保姆" },
         { value: "other", label: "其他需求" },
       ],
       submit: "发送消息",

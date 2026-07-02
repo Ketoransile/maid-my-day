@@ -115,6 +115,12 @@ export const frOverrides: DeepPartial<Translations> = {
         description: "Un soutien complet pour que votre foyer fonctionne sans accroc.",
         imageAlt: "Intérieur moderne bien organisé",
       },
+      {
+        id: "childcare",
+        title: "Garde d'enfants & Nounous",
+        description: "Des nounous chaleureuses et de confiance pour veiller sur vos enfants à la maison.",
+        imageAlt: "Nounou attentionnée lisant avec de jeunes enfants",
+      },
     ],
   },
   howItWorks: {

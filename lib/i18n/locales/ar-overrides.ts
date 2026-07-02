@@ -115,6 +115,12 @@ export const arOverrides: DeepPartial<Translations> = {
         description: "دعم كامل لإبقاء منزلك يعمل بسلاسة.",
         imageAlt: "منزل عصري منظم بشكل جيد",
       },
+      {
+        id: "childcare",
+        title: "رعاية الأطفال والمربّيات",
+        description: "مربّيات دافئات وموثوقات لإبقاء أطفالك بأمان ورعاية في المنزل.",
+        imageAlt: "مربّية حنونة تقرأ مع أطفال صغار",
+      },
     ],
   },
   howItWorks: {

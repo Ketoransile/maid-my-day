@@ -67,6 +67,7 @@ export const coreSectionsAr: Pick<
       { id: "drivers", label: "سائقون", alt: "سائقون محترفون" },
       { id: "petCare", label: "رعاية الحيوانات", alt: "خدمات رعاية الحيوانات الأليفة" },
       { id: "homeManagement", label: "إدارة المنزل", alt: "خدمات إدارة المنزل" },
+      { id: "childcare", label: "رعاية الأطفال", alt: "خدمات رعاية الأطفال والمربّيات" },
     ],
     pillars: [
       {
@@ -155,6 +156,7 @@ export const coreSectionsAr: Pick<
         { value: "driver", label: "سائقون محترفون" },
         { value: "pet-care", label: "رعاية الحيوانات الأليفة" },
         { value: "management", label: "إدارة المنزل" },
+        { value: "childcare", label: "رعاية الأطفال والمربّيات" },
         { value: "other", label: "شيء آخر" },
       ],
       submit: "إرسال الرسالة",

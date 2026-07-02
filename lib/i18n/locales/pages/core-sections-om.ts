@@ -67,6 +67,7 @@ export const coreSectionsOm: Pick<
       { id: "drivers", label: "Konkolaachisota", alt: "Konkolaachisota ogummaa qaban" },
       { id: "petCare", label: "Bineensota", alt: "Eeyyama bineensota" },
       { id: "homeManagement", label: "Bulchiinsa", alt: "Bulchiinsa mana" },
+      { id: "childcare", label: "Ijoollee", alt: "Tajaajila kunuunsa ijoollee fi guddiftuu" },
     ],
     pillars: [
       {
@@ -155,6 +156,7 @@ export const coreSectionsOm: Pick<
         { value: "driver", label: "Konkolaachisota Ogummaa Qaban" },
         { value: "pet-care", label: "Eeyyama Bineensota" },
         { value: "management", label: "Bulchiinsa Mana" },
+        { value: "childcare", label: "Kunuunsa Ijoollee fi Guddiftuu" },
         { value: "other", label: "Waan biraa" },
       ],
       submit: "Ergaa ergi",

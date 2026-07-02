@@ -115,6 +115,12 @@ export const zhOverrides: DeepPartial<Translations> = {
         description: "全面支持，让您的家顺畅运转。",
         imageAlt: "井然有序的现代家居",
       },
+      {
+        id: "childcare",
+        title: "儿童照护与保姆",
+        description: "温暖可靠的保姆，在家中守护并照料您的孩子。",
+        imageAlt: "细心的保姆陪伴年幼的孩子阅读",
+      },
     ],
   },
   howItWorks: {

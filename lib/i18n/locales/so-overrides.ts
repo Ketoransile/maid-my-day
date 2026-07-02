@@ -117,6 +117,12 @@ export const soOverrides: DeepPartial<Translations> = {
         description: "Taageero buuxda si gurigaagu si habsami leh u shaqeeyo.",
         imageAlt: "Guri casri ah oo habaysan",
       },
+      {
+        id: "childcare",
+        title: "Daryeelka Carruurta & Xannaaneyaal",
+        description: "Xannaaneyaal diirran oo lagu kalsoon yahay si carruurtaadu ammaan iyo daryeel gurigaaga ugu joogaan.",
+        imageAlt: "Xannaane naxariis leh oo carruur yaryar wax la akhrinaya",
+      },
     ],
   },
   howItWorks: {

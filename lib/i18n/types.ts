@@ -42,6 +42,7 @@ export type Translations = {
         housing: string;
         housemaids: string;
         drivers: string;
+        childcare: string;
         areas: string;
         packages: string;
       };

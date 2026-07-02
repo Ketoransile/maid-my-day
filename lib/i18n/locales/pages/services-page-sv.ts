@@ -166,5 +166,29 @@ export const servicesPageSv: DeepPartial<Translations>["servicesPage"] = {
       ],
       imageAlt: "Välorganiserat modernt hem i Addis Abeba",
     },
+    {
+      id: "childcare",
+      title: "Barnpassning & barnflickor",
+      summary:
+        "Varma, pålitliga barnflickor och barnvakter som håller dina barn trygga, aktiverade och omhändertagna hemma.",
+      paragraphs: [
+        "Att lämna sina barn hos någon ny är en av de svåraste delarna av att etablera sig i ett nytt land. Varje barnflicka hos Maid My Day intervjuas, referenskontrolleras och bedöms utifrån värme, tålamod och verklig erfarenhet av att ta hand om barn innan vi föreslår en matchning.",
+        "Vi placerar vårdgivare för heltid, deltid och tillfälliga behov — från stöd med nyfödda till fritidsomsorg för äldre barn. Du bestämmer rutin, språk och husregler; vi hittar någon vars erfarenhet och temperament passar din familj, oavsett om det handlar om hjälp med måltider, läxor, lek eller skolskjuts.",
+        "Efter placering håller vi kontakten för schemaändringar, feedback och ersättningar — så att du alltid har en pålitlig kontaktpunkt och lugn och ro medan du arbetar eller reser.",
+      ],
+      includes: [
+        "Barnflickor granskade genom intervjuer, referenser och bakgrundskontroller",
+        "Alternativ för nyfödda, småbarn och fritidsomsorg",
+        "Stöd med måltider, hygien, lek och läxor",
+        "Schemaläggning för heltid, deltid och tillfälliga behov",
+        "Ersättningsgaranti och löpande koordinering",
+      ],
+      idealFor: [
+        "Arbetande föräldrar och hushåll med två karriärer",
+        "Nyanlända familjer som behöver pålitlig lokal barnpassning",
+        "Föräldrar som behöver flexibel vård eller backup kring sitt schema",
+      ],
+      imageAlt: "Omtänksam barnflicka som läser med små barn",
+    },
   ],
 };

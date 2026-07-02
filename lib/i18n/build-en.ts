@@ -142,6 +142,13 @@ export const en: Translations = {
         description: "Complete support to keep your home running smoothly.",
         imageAlt: "Well-organized modern household",
       },
+      {
+        id: "childcare",
+        title: "Childcare & Nannies",
+        description:
+          "Warm, trusted nannies to keep your children safe and cared for at home.",
+        imageAlt: "Nanny playing with a young child at home",
+      },
     ],
   },
   howItWorks: {
@@ -258,6 +265,7 @@ export const en: Translations = {
       { id: "drivers", label: "Drivers", alt: "Professional drivers" },
       { id: "petCare", label: "Pet Care", alt: "Pet care services" },
       { id: "homeManagement", label: "Home Mgmt", alt: "Home management services" },
+      { id: "childcare", label: "Childcare", alt: "Childcare and nanny services" },
     ],
     pillars: [
       {
@@ -319,6 +327,7 @@ export const en: Translations = {
         { value: "driver", label: "Professional Drivers" },
         { value: "pet-care", label: "Pet Care Services" },
         { value: "management", label: "Home Management" },
+        { value: "childcare", label: "Childcare & Nannies" },
         { value: "other", label: "Something else" },
       ],
       submit: "Send message",

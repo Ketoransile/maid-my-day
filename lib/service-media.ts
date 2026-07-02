@@ -23,6 +23,7 @@ export const SERVICE_MEDIA_FOLDERS = [
   "drivers",
   "pet-care",
   "home-management",
+  "childcare",
 ] as const;
 
 export type ServiceMediaFolder = (typeof SERVICE_MEDIA_FOLDERS)[number];
@@ -38,6 +39,7 @@ const SERVICE_ID_TO_FOLDER: Record<string, ServiceMediaFolder> = {
   "pet-care": "pet-care",
   homeManagement: "home-management",
   "home-management": "home-management",
+  childcare: "childcare",
 };
 
 /** Unsplash placeholders until local files are added (same filenames in each folder replace these) */
@@ -47,6 +49,7 @@ const REMOTE_FALLBACK_BY_FOLDER: Record<ServiceMediaFolder, string> = {
   drivers: images.services.driver,
   "pet-care": images.services.petCare,
   "home-management": images.services.homeManagement,
+  childcare: images.services.childcare,
 };
 
 export function resolveServiceFolder(serviceId: string): ServiceMediaFolder {

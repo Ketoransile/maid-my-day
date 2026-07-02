@@ -67,6 +67,7 @@ export const coreSectionsSv: Pick<
       { id: "drivers", label: "Chaufförer", alt: "Professionella chaufförer" },
       { id: "petCare", label: "Djurvård", alt: "Djurvårdstjänster" },
       { id: "homeManagement", label: "Hemadmin.", alt: "Hemadministration" },
+      { id: "childcare", label: "Barnpassning", alt: "Barnpassning och barnflicktjänster" },
     ],
     pillars: [
       {
@@ -155,6 +156,7 @@ export const coreSectionsSv: Pick<
         { value: "driver", label: "Professionella chaufförer" },
         { value: "pet-care", label: "Djurvård" },
         { value: "management", label: "Hemadministration" },
+        { value: "childcare", label: "Barnpassning & barnflickor" },
         { value: "other", label: "Något annat" },
       ],
       submit: "Skicka meddelande",

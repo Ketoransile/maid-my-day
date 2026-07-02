@@ -1,4 +1,4 @@
-import { Car, ClipboardList, Home, PawPrint, Sparkles } from "lucide-react";
+import { Baby, Car, ClipboardList, Home, PawPrint, Sparkles } from "lucide-react";
 
 export const serviceIconMap = {
   housing: Home,
@@ -6,6 +6,7 @@ export const serviceIconMap = {
   drivers: Car,
   petCare: PawPrint,
   homeManagement: ClipboardList,
+  childcare: Baby,
 } as const;
 
 export type ServiceIconKey = keyof typeof serviceIconMap;

@@ -166,5 +166,29 @@ export const servicesPageFr: DeepPartial<Translations>["servicesPage"] = {
       ],
       imageAlt: "Intérieur moderne bien organisé à Addis-Abeba",
     },
+    {
+      id: "childcare",
+      title: "Garde d'enfants & Nounous",
+      summary:
+        "Des nounous et gardes d'enfants chaleureuses et dignes de confiance qui veillent à la sécurité, à l'éveil et au bien-être de vos enfants à la maison.",
+      paragraphs: [
+        "Confier ses enfants à une personne inconnue est l'une des étapes les plus difficiles d'une installation dans un nouveau pays. Chaque nounou Maid My Day est reçue en entretien, ses références sont vérifiées et nous évaluons sa bienveillance, sa patience et son expérience réelle auprès des enfants avant de vous proposer une candidate.",
+        "Nous plaçons des gardes pour des besoins à temps plein, à temps partiel ou occasionnels — de l'accompagnement des nouveau-nés à la garde après l'école pour les plus grands. Vous définissez le rythme, la langue et les règles de la maison ; nous trouvons une personne dont l'expérience et le tempérament conviennent à votre famille, qu'il s'agisse d'aide aux repas, aux devoirs, aux jeux ou aux trajets scolaires.",
+        "Après la mise en place, nous restons disponibles pour les ajustements d'horaires, les retours et les remplacements — vous disposez ainsi toujours d'un interlocuteur fiable et de l'esprit tranquille pendant votre travail ou vos déplacements.",
+      ],
+      includes: [
+        "Nounous sélectionnées par entretiens, références et vérification des antécédents",
+        "Options de garde pour nouveau-nés, tout-petits et après l'école",
+        "Aide aux repas, à l'hygiène, aux jeux et aux devoirs",
+        "Horaires à temps plein, à temps partiel ou occasionnels",
+        "Garantie de remplacement et coordination continue",
+      ],
+      idealFor: [
+        "Parents actifs et couples aux deux carrières",
+        "Familles nouvellement arrivées cherchant une garde d'enfants locale de confiance",
+        "Parents ayant besoin d'une garde flexible ou d'appoint selon leur emploi du temps",
+      ],
+      imageAlt: "Nounou attentionnée lisant avec de jeunes enfants",
+    },
   ],
 };

@@ -175,6 +175,31 @@ export const serviceDetails: ServiceDetail[] = [
     image: images.services.homeManagement,
     imageAlt: "Well-organized modern household in Addis Ababa",
   },
+  {
+    id: "childcare",
+    title: "Childcare & Nannies",
+    summary:
+      "Warm, trustworthy nannies and childminders who keep your children safe, engaged, and cared for at home.",
+    paragraphs: [
+      "Leaving your children with someone new is one of the hardest parts of settling into a different country. Every Maid My Day nanny is interviewed, reference-checked, and assessed for warmth, patience, and real experience caring for children before we suggest a match.",
+      "We place caregivers for full-time, part-time, and occasional needs — from newborn support to after-school care for older kids. You set the routine, language, and house rules; we find someone whose experience and temperament fit your family, whether that means help with meals, homework, playtime, or school runs.",
+      "After placement, we stay in touch for scheduling changes, feedback, and replacements — so you always have a reliable point of contact and peace of mind while you work or travel.",
+    ],
+    includes: [
+      "Nannies vetted through interviews, references & background checks",
+      "Newborn, toddler, and after-school care options",
+      "Support with meals, hygiene, playtime, and homework",
+      "Full-time, part-time, and occasional scheduling",
+      "Replacement guarantee and ongoing coordination",
+    ],
+    idealFor: [
+      "Working parents and dual-career households",
+      "Newly arrived families who need trusted local childcare",
+      "Parents needing flexible or backup care around their schedule",
+    ],
+    image: images.services.childcare,
+    imageAlt: "Nanny playing with a young child at home",
+  },
 ];
 
 export const serviceAreas = [

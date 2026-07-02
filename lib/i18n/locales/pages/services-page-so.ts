@@ -166,5 +166,29 @@ export const servicesPageSo: DeepPartial<Translations>["servicesPage"] = {
       ],
       imageAlt: "Guri casri ah oo si fiican loo habeeyay Addis Ababa",
     },
+    {
+      id: "childcare",
+      title: "Daryeelka Carruurta & Xannaaneyaal",
+      summary:
+        "Xannaaneyaal diirran oo lagu kalsoon yahay oo carruurtaada ammaan, firfircoon oo daryeelan gurigaaga ku ilaaliya.",
+      paragraphs: [
+        "In carruurtaada laga tago qof cusub waa mid ka mid ah waxyaabaha ugu adag ee ku xiran degganaanshaha waddan kale. Xannaane kasta oo Maid My Day ah waa la wareystaa, tixraaca waa la hubiyaa, waxaana loo qiimeeyaa naxariis, dulqaad iyo khibrad dhab ah oo daryeelka carruurta ka hor inta aan iswaafajin soo jeedin.",
+        "Waxaan gelinaa daryeelayaal loogu talagalay baahiyaha waqti buuxa, waqti dhiman iyo mararka qaarkood — laga bilaabo taageerada dhallaanka ilaa daryeelka dugsiga ka dib ee carruurta waaweyn. Adigu waxaad qeexdaa nidaamka, luqadda iyo xeerarka guriga; annaguna waxaan helnaa qof khibradiisa iyo dabeecaddiisu ku habboon yihiin qoyskaaga, ha ahaato caawimaad cunto, shaqo guri, ciyaar ama safar dugsi.",
+        "Gelinta ka dib, waxaan sii wadnaa xiriirka isbeddelka jadwalka, jawaab celinta iyo beddelka — si aad mar walba u haysato xiriir lagu kalsoon yahay iyo nabad maskaxeed inta aad shaqaynayso ama safraysid.",
+      ],
+      includes: [
+        "Xannaaneyaal lagu hubiyay wareysi, tixraac iyo hubinta asalka",
+        "Doorashooyin daryeel dhallaan, ilmo yar iyo dugsiga ka dib",
+        "Taageero cunto, nadaafad, ciyaar iyo shaqo guri",
+        "Jadwal waqti buuxa, waqti dhiman iyo mararka qaarkood",
+        "Dammaanad beddelid iyo isku xir joogto ah",
+      ],
+      idealFor: [
+        "Waalidiinta shaqeeya iyo qoysaska laba xirfadood leh",
+        "Qoysaska cusub ee u baahan daryeel carruur oo maxalli ah oo lagu kalsoon yahay",
+        "Waalidiinta u baahan daryeel dabacsan ama beddel ku habboon jadwalkooda",
+      ],
+      imageAlt: "Xannaane naxariis leh oo carruur yaryar wax la akhrinaya",
+    },
   ],
 };

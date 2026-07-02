@@ -13,6 +13,7 @@ export const serviceImageMap: Record<ServiceIconKey, string> = {
   drivers: getServiceCardImage("drivers"),
   petCare: getServiceCardImage("petCare"),
   homeManagement: getServiceCardImage("homeManagement"),
+  childcare: getServiceCardImage("childcare"),
 };
 
 /** Detail page hero image per service id */
@@ -22,6 +23,7 @@ export const serviceDetailImageMap: Record<string, string> = {
   drivers: getServiceDetailImage("drivers"),
   "pet-care": getServiceDetailImage("pet-care"),
   "home-management": getServiceDetailImage("home-management"),
+  childcare: getServiceDetailImage("childcare"),
 };
 
 export { getServiceGallery, getServiceImageFallback };

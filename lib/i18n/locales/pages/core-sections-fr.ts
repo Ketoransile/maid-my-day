@@ -67,6 +67,7 @@ export const coreSectionsFr: Pick<
       { id: "drivers", label: "Chauffeurs", alt: "Chauffeurs professionnels" },
       { id: "petCare", label: "Animaux", alt: "Garde d'animaux" },
       { id: "homeManagement", label: "Gestion", alt: "Gestion du foyer" },
+      { id: "childcare", label: "Enfants", alt: "Services de garde d'enfants et de nounous" },
     ],
     pillars: [
       {
@@ -159,6 +160,7 @@ export const coreSectionsFr: Pick<
         { value: "driver", label: "Chauffeurs professionnels" },
         { value: "pet-care", label: "Garde d'animaux" },
         { value: "management", label: "Gestion du foyer" },
+        { value: "childcare", label: "Garde d'enfants & Nounous" },
         { value: "other", label: "Autre chose" },
       ],
       submit: "Envoyer le message",

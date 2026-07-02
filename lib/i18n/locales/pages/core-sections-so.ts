@@ -66,6 +66,7 @@ export const coreSectionsSo: Pick<
       { id: "drivers", label: "Darawal", alt: "Darawallo xirfad leh" },
       { id: "petCare", label: "Xayawaan", alt: "Daryeel xayawaanka" },
       { id: "homeManagement", label: "Maamul", alt: "Maamulka guriga" },
+      { id: "childcare", label: "Carruur", alt: "Adeegyada daryeelka carruurta iyo xannaaneyaasha" },
     ],
     pillars: [
       { title: "Gurigaaga hel", detail: "Taageero degaan si aad ugu degto xaafadda iyo hantida saxda ah." },
@@ -140,6 +141,7 @@ export const coreSectionsSo: Pick<
         { value: "driver", label: "Darawallo Xirfad leh" },
         { value: "pet-care", label: "Daryeel Xayawaanka" },
         { value: "management", label: "Maamulka Guriga" },
+        { value: "childcare", label: "Daryeelka Carruurta & Xannaaneyaal" },
         { value: "other", label: "Wax kale" },
       ],
       submit: "Dir fariin",

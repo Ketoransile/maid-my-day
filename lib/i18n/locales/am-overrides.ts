@@ -105,6 +105,12 @@ export const amOverrides: DeepPartial<Translations> = {
         description: "ቤትዎ በተሳካ ሁኔታ እንዲሰራ ሙሉ ድጋፍ።",
         imageAlt: "በጥንቃቄ የተደራጁ ዘመናዊ ቤት",
       },
+      {
+        id: "childcare",
+        title: "የልጆች እንክብካቤ እና ሞግዚቶች",
+        description: "ልጆችዎን በቤት ውስጥ ደህንነታቸው ተጠብቆ እና ተንከባክቦ የሚይዙ ሞቅ ያሉ እና የታመኑ ሞግዚቶች።",
+        imageAlt: "ከትንንሽ ልጆች ጋር የምታነብ አሳቢ ሞግዚት",
+      },
     ],
   },
   howItWorks: {
@@ -210,6 +216,7 @@ export const amOverrides: DeepPartial<Translations> = {
       { id: "drivers", label: "አሽከርካሪዎች", alt: "ባለሙያ አሽከርካሪዎች" },
       { id: "petCare", label: "የቤት እንስሳት", alt: "የቤት እንስሳት እንክብካቤ" },
       { id: "homeManagement", label: "አስተዳደር", alt: "የቤት አስተዳደር" },
+      { id: "childcare", label: "ልጆች", alt: "የልጆች እንክብካቤ እና ሞግዚት አገልግሎት" },
     ],
     pillars: [
       {
@@ -291,6 +298,7 @@ export const amOverrides: DeepPartial<Translations> = {
         { value: "driver", label: "ባለሙያ አሽከርካሪዎች" },
         { value: "pet-care", label: "የቤት እንስሳት እንክብካቤ" },
         { value: "management", label: "የቤት አስተዳደር" },
+        { value: "childcare", label: "የልጆች እንክብካቤ እና ሞግዚቶች" },
         { value: "other", label: "ሌላ ነገር" },
       ],
       submit: "መልዕክት ላክ",

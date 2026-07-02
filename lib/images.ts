@@ -55,6 +55,9 @@ export const images = {
     /** Organized, well-run modern household */
     homeManagement:
       "https://images.unsplash.com/photo-1556912172-45b7abe8b7e1?w=900&q=80&auto=format&fit=crop",
+    /** Warm, attentive childcare and nannies */
+    childcare:
+      "https://images.pexels.com/photos/8504288/pexels-photo-8504288.jpeg?auto=compress&cs=tinysrgb&w=900",
   },
   avatars: {
     james:

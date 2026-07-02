@@ -115,6 +115,12 @@ export const svOverrides: DeepPartial<Translations> = {
         description: "Fullständigt stöd för att hålla ditt hem igång smidigt.",
         imageAlt: "Välorganiserat modernt hushåll",
       },
+      {
+        id: "childcare",
+        title: "Barnpassning & barnflickor",
+        description: "Varma, pålitliga barnflickor som håller dina barn trygga och omhändertagna hemma.",
+        imageAlt: "Omtänksam barnflicka som läser med små barn",
+      },
     ],
   },
   howItWorks: {

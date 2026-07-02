@@ -56,6 +56,7 @@ export const mainNavItems: NavMenuItem<NavItemKey>[] = [
       { labelKey: "housing", href: "/services#housing" },
       { labelKey: "housemaids", href: "/services#housemaids" },
       { labelKey: "drivers", href: "/services#drivers" },
+      { labelKey: "childcare", href: "/services#childcare" },
       { labelKey: "areas", href: "/services#areas" },
       { labelKey: "packages", href: "/services#packages" },
     ],

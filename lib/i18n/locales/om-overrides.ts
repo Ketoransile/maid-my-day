@@ -115,6 +115,12 @@ export const omOverrides: DeepPartial<Translations> = {
         description: "Deeggarsa guutuu mana keessan akka sirritti hojjetuuf.",
         imageAlt: "Mana ammayyaa sirritti qindaa'e",
       },
+      {
+        id: "childcare",
+        title: "Kunuunsa Ijoollee fi Guddiftuu",
+        description: "Guddiftuu ho'aa fi amanamoo ijoollee keessan mana keessatti nagaa fi kunuunsaan eegan.",
+        imageAlt: "Guddiftuu ijoollee xixiqqoo waliin dubbistu",
+      },
     ],
   },
   howItWorks: {
